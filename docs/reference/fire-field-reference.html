@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIRE Field Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211e1a;
+    --paper:#f5f2ea;
+    --surface:#ffffff;
+    --muted:#7c766c;
+    --line:#e4ded2;
+    --line-strong:#d3ccbd;
+    --ess:#bf4126;
+    --ess-soft:#f6ddd3;
+    --opt-ink:#9a6b12;
+    --opt-soft:#f4e8c4;
+    --na:#a9a299;
+    --na-soft:#ece9e1;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    line-height:1.5;
+    padding:clamp(16px,4vw,40px);
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  /* ---- header ---- */
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ess);font-weight:600;margin:0 0 10px;
+  }
+  h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-weight:700;
+    font-size:clamp(28px,5vw,44px);
+    line-height:1.04;letter-spacing:-.02em;
+    margin:0 0 8px;
+  }
+  .sub{color:var(--muted);font-size:15px;max-width:60ch;margin:0 0 26px;}
+  .sub b{color:var(--ink);font-weight:600;}
+
+  /* ---- stat strip ---- */
+  .stats{
+    display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;
+  }
+  .stat{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:13px 16px;flex:1 1 150px;
+  }
+  .stat .num{
+    font-family:"Space Grotesk",sans-serif;font-weight:700;
+    font-size:26px;line-height:1;letter-spacing:-.01em;
+  }
+  .stat .lab{font-size:12px;color:var(--muted);margin-top:5px;}
+  .stat.escalation{flex:2 1 320px;}
+  .esc-row{display:flex;align-items:flex-end;gap:8px;}
+  .esc-step{flex:1;text-align:center;}
+  .esc-step .n{font-family:"Space Grotesk";font-weight:700;font-size:22px;line-height:1;}
+  .esc-step .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:5px;}
+  .esc-step .bar{height:6px;border-radius:3px;background:var(--ess);margin-top:7px;opacity:.92;}
+  .esc-arrow{color:var(--na);font-size:14px;padding-bottom:20px;}
+
+  /* ---- controls ---- */
+  .controls{
+    position:sticky;top:0;z-index:5;
+    background:var(--paper);
+    padding:14px 0 12px;margin-bottom:4px;
+    border-bottom:1px solid var(--line);
+  }
+  .search-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+  .search{
+    flex:1 1 240px;position:relative;
+  }
+  .search input{
+    width:100%;font-family:"IBM Plex Mono",monospace;font-size:14px;
+    padding:11px 14px 11px 38px;border:1px solid var(--line-strong);
+    border-radius:var(--radius);background:var(--surface);color:var(--ink);
+  }
+  .search input:focus{outline:2px solid var(--ess);outline-offset:1px;border-color:transparent;}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);}
+  .count{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--muted);white-space:nowrap;}
+  .count b{color:var(--ink);}
+
+  .chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .chip{
+    font-family:"IBM Plex Sans";font-size:12.5px;font-weight:500;
+    padding:7px 13px;border-radius:100px;cursor:pointer;
+    border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);
+    transition:background .15s,color .15s,border-color .15s;user-select:none;
+  }
+  .chip:hover{border-color:var(--ink);}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .chip.divider{pointer-events:none;border:none;background:none;padding:7px 2px;color:var(--line-strong);}
+
+  /* ---- legend ---- */
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0 4px;font-size:12px;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .key{width:20px;height:16px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;}
+  .key.e{background:var(--ess);color:#fff;}
+  .key.o{background:var(--opt-soft);color:var(--opt-ink);}
+  .key.x{background:var(--na-soft);color:var(--na);}
+
+  /* ---- table ---- */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:14px;}
+  table{width:100%;border-collapse:collapse;min-width:620px;}
+  thead th{
+    position:sticky;top:0;background:var(--surface);
+    font-family:"IBM Plex Mono",monospace;font-weight:600;
+    font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  thead th.phase{text-align:center;width:42px;padding:12px 4px;}
+  thead .phasehead{border-left:1px solid var(--line);}
+  tbody td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:#fbf9f4;}
+  .num-cell{font-family:"IBM Plex Mono";font-size:12px;color:var(--na);width:34px;}
+  .field{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--ink);}
+  .field .gtab{display:inline-block;width:3px;height:13px;border-radius:2px;margin-right:9px;vertical-align:-2px;background:var(--gc,var(--na));}
+  .sec{font-size:12px;color:var(--muted);white-space:nowrap;}
+  .type{font-family:"IBM Plex Mono";font-size:11.5px;color:var(--muted);white-space:nowrap;}
+  td.phase{text-align:center;padding:11px 4px;border-left:1px solid var(--line);}
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;border-radius:5px;
+    font-family:"IBM Plex Mono";font-size:11px;font-weight:600;
+  }
+  .pill.e{background:var(--ess);color:#fff;}
+  .pill.o{background:var(--opt-soft);color:var(--opt-ink);}
+  .pill.na,.pill.nc{background:var(--na-soft);color:var(--na);}
+
+  .empty{padding:38px;text-align:center;color:var(--muted);font-size:14px;}
+
+  /* group section label rows */
+  .grouprow td{
+    background:var(--paper);
+    font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:600;color:var(--ink);padding:9px 12px;
+    border-bottom:1px solid var(--line-strong);border-top:1px solid var(--line-strong);
+  }
+  .grouprow .gcount{color:var(--muted);font-weight:400;}
+
+  footer{margin-top:24px;font-size:12px;color:var(--muted);line-height:1.6;}
+  footer a{color:var(--ess);}
+  .note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--opt-soft);border-radius:8px;padding:12px 15px;font-size:12.5px;color:var(--muted);margin-top:16px;}
+  .note b{color:var(--ink);font-weight:600;}
+
+  @media (max-width:560px){
+    .sec{display:none;}
+    thead th.sec-h{display:none;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">FSB · Final Report · 15 April 2025</p>
+  <h1>FIRE Field Reference</h1>
+  <p class="sub">All <b>87 information items</b> of the Format for Incident Reporting Exchange, with field type and optionality across the three institution-initiated reporting phases. <b>Essential</b> = required; <b>Optional</b> = at the implementing authority's discretion.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">87</div><div class="lab">information items</div></div>
+    <div class="stat"><div class="num" style="color:var(--ess)">48</div><div class="lab">essential by final report</div></div>
+    <div class="stat"><div class="num" style="color:var(--opt-ink)">39</div><div class="lab">optional</div></div>
+    <div class="stat escalation">
+      <div class="lab" style="margin-bottom:9px">Essential items by phase — burden escalates toward closure</div>
+      <div class="esc-row">
+        <div class="esc-step"><div class="n">19</div><div class="bar" style="opacity:.45"></div><div class="l">Initial</div></div>
+        <div class="esc-arrow">→</div>
+        <div class="esc-step"><div class="n">33</div><div class="bar" style="opacity:.68"></div><div class="l">Intermediate</div></div>
+        <div class="esc-arrow">→</div>
+        <div class="esc-step"><div class="n">48</div><div class="bar"></div><div class="l">Final</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-row">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" placeholder="Search fields…" autocomplete="off" aria-label="Search fields">
+      </div>
+      <span class="count"><b id="shown">87</b> of 87 fields</span>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip" data-g="all" aria-pressed="true">All groups</button>
+      <button class="chip" data-g="H" aria-pressed="false">Header</button>
+      <button class="chip" data-g="1" aria-pressed="false">1 · Reporting</button>
+      <button class="chip" data-g="2" aria-pressed="false">2 · Incident</button>
+      <button class="chip" data-g="3" aria-pressed="false">3 · Impact</button>
+      <button class="chip" data-g="4" aria-pressed="false">4 · Closure</button>
+      <span class="chip divider">|</span>
+      <button class="chip" data-o="all" aria-pressed="true">Any status</button>
+      <button class="chip" data-o="E" aria-pressed="false">Essential only</button>
+      <button class="chip" data-o="O" aria-pressed="false">Optional only</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><span class="key e">E</span> Essential (required)</span>
+    <span><span class="key o">O</span> Optional</span>
+    <span><span class="key x">–</span> Not applicable / not collected</span>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Field</th>
+          <th class="sec-h">Section</th>
+          <th>Type</th>
+          <th class="phase phasehead" title="Initial report">Init</th>
+          <th class="phase" title="Intermediate report">Int</th>
+          <th class="phase" title="Final report">Fin</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>No fields match those filters.</div>
+  </div>
+
+  <div class="note"><b>Reading the phases.</b> An item can move from Optional to Essential as an incident progresses (e.g. <i>incident type</i> is Optional at first report but Essential once resolved). The headline 48 essential / 39 optional split is measured at the closed-incident (final) state. One item — <i>actions planned</i> — is Essential in intermediate reports but Not applicable at final, since there is nothing left to plan once closed.</div>
+
+  <footer>
+    Source: Financial Stability Board, <i>Format for Incident Reporting Exchange (FIRE): Final report</i>, 15 April 2025 — body tables (field types) and Annex B (reporting-phase optionality). Covers institution-initiated reporting only. Phase columns map status as: Initial = initial/open; Intermediate = resolved-state requirements; Final = closed-state requirements.
+  </footer>
+</div>
+
+<script>
+const GROUPS={
+  H:{label:"Message header",color:"#a9a299"},
+  "1":{label:"1 · Reporting Details",color:"#3b6ea5"},
+  "2":{label:"2 · Incident Details",color:"#2f8f83"},
+  "3":{label:"3 · Impact Assessment",color:"#8a5cb0"},
+  "4":{label:"4 · Incident Closure",color:"#b4791f"}
+};
+// p = [Initial, Intermediate, Final]; E essential, O optional, NA not applicable, NC not collected
+const DATA=[
+ {n:1,g:"H",s:"Message header",f:"FIRE version",t:"Decimal",p:["E","E","E"]},
+ {n:2,g:"H",s:"Message header",f:"FIRE report type",t:"Enumerated",p:["E","E","E"]},
+ {n:3,g:"H",s:"Message header",f:"FIRE report language code",t:"Enumerated",p:["E","E","E"]},
+ {n:4,g:"H",s:"Message header",f:"FIRE report language country",t:"Enumerated",p:["E","E","E"]},
+ {n:5,g:"H",s:"Message header",f:"FIRE report language customisation",t:"Text (short)",p:["O","O","O"]},
+ {n:6,g:"H",s:"Message header",f:"FIRE report currency",t:"Text (short)",p:["E","E","E"]},
+
+ {n:7,g:"1",s:"1.1 Reporting Entity",f:"entity name",t:"Text (short)",p:["E","E","E"]},
+ {n:8,g:"1",s:"1.1 Reporting Entity",f:"global identifier(s)",t:"Array (key-value)",p:["O","O","O"]},
+ {n:9,g:"1",s:"1.1 Reporting Entity",f:"local identifier(s)",t:"Array (key-value)",p:["O","O","O"]},
+ {n:10,g:"1",s:"1.1 Reporting Entity",f:"ultimate parent name",t:"Text (short)",p:["O","O","O"]},
+ {n:11,g:"1",s:"1.1 Reporting Entity",f:"entity type(s)",t:"Array (key-value)",p:["E","E","E"]},
+ {n:12,g:"1",s:"1.1 Reporting Entity",f:"entity country",t:"Enumerated",p:["O","O","O"]},
+ {n:13,g:"1",s:"1.2 Receiving Entity",f:"recipient identifier(s)",t:"Array (key-value)",p:["E","E","E"]},
+ {n:14,g:"1",s:"1.2 Receiving Entity",f:"recipient history",t:"Array (key-value)",p:["O","O","O"]},
+ {n:15,g:"1",s:"1.2 Receiving Entity",f:"forwarding sender",t:"Array (key-value)",p:["NC","NC","NC"]},
+ {n:16,g:"1",s:"1.2 Receiving Entity",f:"forwarding recipient(s)",t:"Array (key-value)",p:["NC","NC","NC"]},
+ {n:17,g:"1",s:"1.3 Contact Details",f:"entity contact(s)",t:"Container",p:["E","E","E"]},
+ {n:18,g:"1",s:"1.3 Contact Details",f:"contact type",t:"Enumerated",p:["E","E","E"]},
+ {n:19,g:"1",s:"1.3 Contact Details",f:"contact name",t:"Text (short)",p:["E","E","E"]},
+ {n:20,g:"1",s:"1.3 Contact Details",f:"contact email",t:"Text (email)",p:["E","E","E"]},
+ {n:21,g:"1",s:"1.3 Contact Details",f:"contact phone",t:"Text (telephone)",p:["E","E","E"]},
+ {n:22,g:"1",s:"1.3 Contact Details",f:"contact role",t:"Text (short)",p:["O","O","O"]},
+ {n:23,g:"1",s:"1.3 Contact Details",f:"contact department",t:"Text (short)",p:["O","O","O"]},
+ {n:24,g:"1",s:"1.3 Contact Details",f:"contact recipient",t:"Array (list)",p:["O","O","O"]},
+
+ {n:25,g:"2",s:"2.1 References",f:"entity internal incident ID",t:"Text (short)",p:["O","O","O"]},
+ {n:26,g:"2",s:"2.1 References",f:"entity related incident ID(s)",t:"Array (list)",p:["O","O","O"]},
+ {n:27,g:"2",s:"2.2 Incident",f:"report phase",t:"Enumerated",p:["E","E","E"]},
+ {n:28,g:"2",s:"2.2 Incident",f:"incident status",t:"Enumerated",p:["E","E","E"]},
+ {n:29,g:"2",s:"2.2 Incident",f:"incident title",t:"Text (short)",p:["E","E","E"]},
+ {n:30,g:"2",s:"2.2 Incident",f:"incident description",t:"Text (long)",p:["E","E","E"]},
+ {n:31,g:"2",s:"2.2 Incident",f:"incident type",t:"Array (list)",p:["O","E","E"]},
+ {n:32,g:"2",s:"2.2 Incident",f:"incident artefact(s)",t:"Text (long)",p:["O","O","O"]},
+ {n:33,g:"2",s:"2.2 Incident",f:"incident discovery method",t:"Enumerated",p:["O","E","E"]},
+ {n:34,g:"2",s:"2.2 Incident",f:"incident reporting trigger(s)",t:"Array (list)",p:["O","E","E"]},
+ {n:35,g:"2",s:"2.2 Incident",f:"estimated timeframe for resolution",t:"Duration",p:["O","O","NA"]},
+ {n:36,g:"2",s:"2.3 Changes since Previous Report",f:"actions taken",t:"Text (long)",p:["O","E","E"]},
+ {n:37,g:"2",s:"2.3 Changes since Previous Report",f:"actions planned",t:"Text (long)",p:["O","E","NA"]},
+ {n:38,g:"2",s:"2.3 Changes since Previous Report",f:"public reaction",t:"Text (long)",p:["O","O","E"]},
+ {n:39,g:"2",s:"2.3 Changes since Previous Report",f:"comms issued",t:"Text (long)",p:["O","O","E"]},
+ {n:40,g:"2",s:"2.3 Changes since Previous Report",f:"bodies notified",t:"Array (list)",p:["O","O","E"]},
+ {n:41,g:"2",s:"2.4 Date / Time Markers",f:"time of report",t:"Datetime",p:["E","E","E"]},
+ {n:42,g:"2",s:"2.4 Date / Time Markers",f:"time of occurrence",t:"Datetime",p:["O","O","O"]},
+ {n:43,g:"2",s:"2.4 Date / Time Markers",f:"time of detection",t:"Datetime",p:["O","O","E"]},
+ {n:44,g:"2",s:"2.4 Date / Time Markers",f:"time of resolution",t:"Datetime",p:["NA","E","E"]},
+ {n:45,g:"2",s:"2.4 Date / Time Markers",f:"time of closure",t:"Datetime",p:["NA","NA","E"]},
+ {n:46,g:"2",s:"2.4 Date / Time Markers",f:"time of next update",t:"Datetime",p:["O","O","NA"]},
+
+ {n:47,g:"3",s:"3.1 Severity Rating",f:"entity severity",t:"Text (short)",p:["O","O","O"]},
+ {n:48,g:"3",s:"3.1 Severity Rating",f:"standardised severity",t:"Enumerated",p:["E","E","E"]},
+ {n:49,g:"3",s:"3.2 Affected Parties",f:"affected party type(s)",t:"Array (list)",p:["O","O","E"]},
+ {n:50,g:"3",s:"3.2 Affected Parties",f:"related affected entities",t:"Array (key-value)",p:["O","O","E"]},
+ {n:51,g:"3",s:"3.2 Affected Parties",f:"affected notes",t:"Text (long)",p:["O","O","O"]},
+ {n:52,g:"3",s:"3.3 Services and Resources",f:"service(s) affected",t:"Container",p:["O","E","E"]},
+ {n:53,g:"3",s:"3.3 Services and Resources",f:"service name",t:"Text (short)",p:["O","E","E"]},
+ {n:54,g:"3",s:"3.3 Services and Resources",f:"service type",t:"Array (key-value)",p:["O","E","E"]},
+ {n:55,g:"3",s:"3.3 Services and Resources",f:"service critical",t:"Array (list)",p:["O","O","O"]},
+ {n:56,g:"3",s:"3.3 Services and Resources",f:"service disruption type",t:"Array (list)",p:["O","E","E"]},
+ {n:57,g:"3",s:"3.3 Services and Resources",f:"service downtime",t:"Duration",p:["O","E","E"]},
+ {n:58,g:"3",s:"3.3 Services and Resources",f:"affected end user number",t:"Integer",p:["O","E","E"]},
+ {n:59,g:"3",s:"3.3 Services and Resources",f:"affected end user percentage",t:"Percentage",p:["O","E","E"]},
+ {n:60,g:"3",s:"3.3 Services and Resources",f:"affected transaction type",t:"Array (list)",p:["O","O","O"]},
+ {n:61,g:"3",s:"3.3 Services and Resources",f:"affected transaction number",t:"Integer",p:["O","O","O"]},
+ {n:62,g:"3",s:"3.3 Services and Resources",f:"affected transaction percentage",t:"Percentage",p:["O","O","O"]},
+ {n:63,g:"3",s:"3.3 Services and Resources",f:"affected transaction value",t:"Decimal",p:["O","O","O"]},
+ {n:64,g:"3",s:"3.3 Services and Resources",f:"resource(s) affected",t:"Container",p:["O","O","E"]},
+ {n:65,g:"3",s:"3.3 Services and Resources",f:"resource type",t:"Enumerated",p:["O","O","E"]},
+ {n:66,g:"3",s:"3.3 Services and Resources",f:"resource affected properties",t:"Array (list)",p:["O","O","E"]},
+ {n:67,g:"3",s:"3.3 Services and Resources",f:"service / resource notes",t:"Text (long)",p:["O","O","O"]},
+ {n:68,g:"3",s:"3.4 Impact",f:"impact financial loss",t:"Decimal",p:["O","O","O"]},
+ {n:69,g:"3",s:"3.4 Impact",f:"impact financial",t:"Enumerated",p:["O","O","O"]},
+ {n:70,g:"3",s:"3.4 Impact",f:"impact operational",t:"Enumerated",p:["O","O","O"]},
+ {n:71,g:"3",s:"3.4 Impact",f:"impact reputational",t:"Enumerated",p:["O","O","O"]},
+ {n:72,g:"3",s:"3.4 Impact",f:"impact external",t:"Enumerated",p:["O","O","O"]},
+ {n:73,g:"3",s:"3.4 Impact",f:"impact geographic spread",t:"Enumerated",p:["O","E","E"]},
+ {n:74,g:"3",s:"3.4 Impact",f:"impact geographic countries",t:"Array (list)",p:["O","O","O"]},
+ {n:75,g:"3",s:"3.4 Impact",f:"impact notes",t:"Text (long)",p:["O","O","O"]},
+
+ {n:76,g:"4",s:"4.1 Cause",f:"cause(s) identified",t:"Container",p:["O","O","E"]},
+ {n:77,g:"4",s:"4.1 Cause",f:"cause type",t:"Enumerated",p:["O","O","E"]},
+ {n:78,g:"4",s:"4.1 Cause",f:"causal strength",t:"Enumerated",p:["O","O","O"]},
+ {n:79,g:"4",s:"4.1 Cause",f:"origin",t:"Enumerated",p:["O","O","E"]},
+ {n:80,g:"4",s:"4.1 Cause",f:"origin identity",t:"Array (key-value)",p:["O","O","O"]},
+ {n:81,g:"4",s:"4.1 Cause",f:"cause notes",t:"Text (long)",p:["O","O","O"]},
+ {n:82,g:"4",s:"4.2 Lessons",f:"lesson(s) identified",t:"Container",p:["NA","NA","E"]},
+ {n:83,g:"4",s:"4.2 Lessons",f:"lesson description",t:"Text (long)",p:["NA","NA","E"]},
+ {n:84,g:"4",s:"4.2 Lessons",f:"remedial action(s)",t:"Array (key-value)",p:["NA","NA","E"]},
+ {n:85,g:"4",s:"4.3 Supplemental Documentation",f:"attachment method",t:"Enumerated",p:["O","O","O"]},
+ {n:86,g:"4",s:"4.3 Supplemental Documentation",f:"attachment instructions",t:"Text (long)",p:["O","O","O"]},
+ {n:87,g:"4",s:"4.3 Supplemental Documentation",f:"attachment embedded",t:"Array (list)",p:["O","O","O"]}
+];
+
+const isEssential = d => d.p.includes("E");
+let fG="all", fO="all", fQ="";
+
+const rowsEl=document.getElementById("rows");
+const emptyEl=document.getElementById("empty");
+const shownEl=document.getElementById("shown");
+
+function pill(v){
+  const cls=v.toLowerCase();
+  const txt=(v==="E")?"E":(v==="O")?"O":"–";
+  const title={E:"Essential",O:"Optional",NA:"Not applicable",NC:"Not collected"}[v];
+  return `<span class="pill ${cls}" title="${title}">${txt}</span>`;
+}
+
+function render(){
+  const list=DATA.filter(d=>{
+    if(fG!=="all" && d.g!==fG) return false;
+    if(fO==="E" && !isEssential(d)) return false;
+    if(fO==="O" && isEssential(d)) return false;
+    if(fQ){
+      const hay=(d.f+" "+d.s+" "+d.t).toLowerCase();
+      if(!hay.includes(fQ)) return false;
+    }
+    return true;
+  });
+
+  shownEl.textContent=list.length;
+  rowsEl.innerHTML="";
+
+  if(!list.length){emptyEl.hidden=false;return;}
+  emptyEl.hidden=true;
+
+  let lastG=null;
+  const frag=document.createDocumentFragment();
+  for(const d of list){
+    if(d.g!==lastG){
+      lastG=d.g;
+      const gr=document.createElement("tr");
+      gr.className="grouprow";
+      const cnt=list.filter(x=>x.g===d.g).length;
+      gr.innerHTML=`<td colspan="7"><span style="color:${GROUPS[d.g].color}">●</span>&nbsp; ${GROUPS[d.g].label} <span class="gcount">— ${cnt} field${cnt>1?"s":""} shown</span></td>`;
+      frag.appendChild(gr);
+    }
+    const tr=document.createElement("tr");
+    tr.innerHTML=
+      `<td class="num-cell">${d.n}</td>`+
+      `<td class="field"><span class="gtab" style="--gc:${GROUPS[d.g].color}"></span>${d.f}</td>`+
+      `<td class="sec">${d.s}</td>`+
+      `<td class="type">${d.t}</td>`+
+      `<td class="phase">${pill(d.p[0])}</td>`+
+      `<td class="phase">${pill(d.p[1])}</td>`+
+      `<td class="phase">${pill(d.p[2])}</td>`;
+    frag.appendChild(tr);
+  }
+  rowsEl.appendChild(frag);
+}
+
+document.getElementById("chips").addEventListener("click",e=>{
+  const b=e.target.closest(".chip");
+  if(!b||b.classList.contains("divider")) return;
+  if(b.dataset.g!==undefined){
+    fG=b.dataset.g;
+    document.querySelectorAll(".chip[data-g]").forEach(c=>c.setAttribute("aria-pressed", c===b));
+  }else if(b.dataset.o!==undefined){
+    fO=b.dataset.o;
+    document.querySelectorAll(".chip[data-o]").forEach(c=>c.setAttribute("aria-pressed", c===b));
+  }
+  render();
+});
+
+document.getElementById("q").addEventListener("input",e=>{
+  fQ=e.target.value.trim().toLowerCase();
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,15 +1,94 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>About</title>
+    <title>About — FSB FIRE Reference</title>
+    <meta name="description" content="About the FSB Format for Incident Reporting Exchange (FIRE) and this reference site." />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
   <body>
-    <h1>About</h1>
-    <p><a href="/">Back home</a></p>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/docs/reference/fire-field-reference.html">Field Reference</a>
+        <span class="sep">·</span>
+        <span>About</span>
+      </nav>
+
+      <p class="eyebrow">FSB · Final Report · 15 April 2025</p>
+      <h1>About this site</h1>
+      <p class="lead">An unofficial reference resource for the Financial Stability Board's <b>Format for Incident Reporting Exchange (FIRE)</b> — the international standard for operational incident reporting by financial institutions.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="num">87</div>
+          <div class="lab">information items</div>
+        </div>
+        <div class="stat">
+          <div class="num" style="color:var(--accent)">48</div>
+          <div class="lab">essential by final report</div>
+        </div>
+        <div class="stat">
+          <div class="num" style="color:var(--opt-ink)">39</div>
+          <div class="lab">optional items</div>
+        </div>
+        <div class="stat">
+          <div class="num">3</div>
+          <div class="lab">reporting phases</div>
+        </div>
+      </div>
+
+      <h2>What is FIRE?</h2>
+      <p>FIRE — the Format for Incident Reporting Exchange — is a common information standard for reporting operational incidents (including cyber incidents) from financial institutions to regulatory authorities. It was published by the Financial Stability Board in its final report on 15 April 2025, following years of development and industry testing.</p>
+      <p>The framework defines <strong>87 information items</strong> across four groups:</p>
+      <ul>
+        <li><strong>Reporting Details</strong> — identifying the reporting and receiving entities and their contacts</li>
+        <li><strong>Incident Details</strong> — what happened, when, how it was discovered, and updates since the last report</li>
+        <li><strong>Impact Assessment</strong> — severity, affected parties, disrupted services, and financial and operational impact</li>
+        <li><strong>Incident Closure</strong> — root cause analysis, lessons learned, and remedial actions</li>
+      </ul>
+      <p>Reporting is structured around three escalating phases. The initial notification captures 19 essential fields; the intermediate update requires 33; and the final closed-incident report requires all 48 essential items. The 39 optional items are collected at each implementing authority's discretion.</p>
+
+      <div class="note"><b>Essential vs Optional.</b> An item's status can change across phases — for example, <em>incident type</em> is Optional at initial report but becomes Essential once the incident is resolved. The 48/39 split is measured at the closed-incident (final) state.</div>
+
+      <h2>Why does it matter?</h2>
+      <p>Internationally active financial institutions currently face duplicative, inconsistent reporting requirements across jurisdictions — filing separate incident reports to multiple authorities in different formats. FIRE provides a common structure that authorities can adopt, reducing the burden on firms while enabling regulators to share data across borders more effectively.</p>
+      <p>FIRE is intentionally flexible: the 39 optional items give authorities room to tailor requirements to their jurisdiction, while the 48 essential items form a minimum baseline that any FIRE-compliant report must include at closure.</p>
+
+      <h2>About the FSB</h2>
+      <p>The Financial Stability Board is an international body that monitors and makes recommendations about the global financial system. It coordinates the financial regulatory policies of its member jurisdictions — which include the G20 economies — and has been working on harmonised cyber incident reporting since 2017.</p>
+
+      <h2>About this site</h2>
+      <p>The official FIRE report is a 100-page PDF with 87 fields spread across body text and 15 annexes. This site makes that content easier to navigate: searchable field tables, filterable annexes, and structured reference pages for each part of the standard.</p>
+      <p>This is an independent reference resource, not affiliated with or endorsed by the Financial Stability Board. The <a href="/docs/reference/FSB-FIRE.PDF">official FSB document</a> is the authoritative source for all field definitions and requirements.</p>
+
+      <h2>Reference tools</h2>
+      <div class="card-grid">
+        <a class="card" href="/docs/reference/fire-field-reference.html">
+          <div class="card-tag">Interactive</div>
+          <div class="card-title">Field Reference</div>
+          <div class="card-desc">All 87 information items with field types and phase optionality. Filter by group, status, or search by name.</div>
+        </a>
+        <a class="card" href="/docs/reference/FSB-FIRE.PDF">
+          <div class="card-tag">Official · PDF</div>
+          <div class="card-title">FSB Final Report</div>
+          <div class="card-desc">Format for Incident Reporting Exchange — the authoritative source document published 15 April 2025.</div>
+        </a>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
   </body>
 </html>
