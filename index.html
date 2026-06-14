@@ -1,17 +1,141 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Home</title>
+    <title>FSB FIRE Reference</title>
+    <meta name="description" content="Reference documentation for the FSB's Format for Incident Reporting Exchange — 87 information items for operational incident reporting by financial institutions." />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <script defer src="/assets/js/main.js"></script>
   </head>
   <body>
-    <h1>It works 🎉</h1>
-    <p>This site is deployed using Cloudflare Pages.</p>
-    <p><a href="/about/">About</a></p>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+        <span class="sep">·</span>
+        <a href="/docs/reference/fire-field-reference.html">Field Reference</a>
+      </nav>
+
+      <p class="eyebrow">FSB · Final Report · 15 April 2025</p>
+      <h1>Format for Incident<br>Reporting Exchange</h1>
+      <p class="lead">The international standard for operational incident reporting by financial institutions — <b>87 information items</b> structured across three reporting phases.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="num">87</div>
+          <div class="lab">information items</div>
+        </div>
+        <div class="stat">
+          <div class="num" style="color:var(--accent)">48</div>
+          <div class="lab">essential by final report</div>
+        </div>
+        <div class="stat">
+          <div class="num" style="color:var(--opt-ink)">39</div>
+          <div class="lab">optional</div>
+        </div>
+        <div class="stat escalation">
+          <div class="lab">Essential items by reporting phase</div>
+          <div class="esc-row">
+            <div class="esc-step">
+              <div class="n">19</div>
+              <div class="bar" style="opacity:.38"></div>
+              <div class="l">Initial</div>
+            </div>
+            <div class="esc-arrow">→</div>
+            <div class="esc-step">
+              <div class="n">33</div>
+              <div class="bar" style="opacity:.65"></div>
+              <div class="l">Intermediate</div>
+            </div>
+            <div class="esc-arrow">→</div>
+            <div class="esc-step">
+              <div class="n">48</div>
+              <div class="bar"></div>
+              <div class="l">Final</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>What is FIRE?</h2>
+      <p>FIRE is a common information standard published by the Financial Stability Board to harmonise how financial institutions report operational incidents — including cyber incidents — to their regulators. It defines a structured set of fields covering everything from the initial notification through to root cause analysis and lessons learned.</p>
+      <p>By providing a shared format, FIRE reduces the reporting burden for internationally active firms that currently file separate, differently structured reports to multiple authorities. Regulators can in turn share data across borders without manual translation.</p>
+
+      <h2>The four reporting groups</h2>
+
+      <div class="group-list">
+        <div class="group-row">
+          <span class="g-dot" style="background:#a9a299"></span>
+          <div class="g-body">
+            <span class="g-name">Header</span>
+            <p class="g-desc">Message metadata — FIRE version, report type, language, and reporting currency.</p>
+          </div>
+          <span class="g-count">6 fields</span>
+        </div>
+        <div class="group-row">
+          <span class="g-dot" style="background:#3b6ea5"></span>
+          <div class="g-body">
+            <span class="g-name">1 · Reporting Details</span>
+            <p class="g-desc">Identifying the reporting entity, the receiving authority, and contact persons for follow-up.</p>
+          </div>
+          <span class="g-count">18 fields</span>
+        </div>
+        <div class="group-row">
+          <span class="g-dot" style="background:#2f8f83"></span>
+          <div class="g-body">
+            <span class="g-name">2 · Incident Details</span>
+            <p class="g-desc">What happened, when it was detected, how it was discovered, incident type, and changes since the previous report.</p>
+          </div>
+          <span class="g-count">22 fields</span>
+        </div>
+        <div class="group-row">
+          <span class="g-dot" style="background:#8a5cb0"></span>
+          <div class="g-body">
+            <span class="g-name">3 · Impact Assessment</span>
+            <p class="g-desc">Severity rating, affected parties, disrupted services and resources, financial loss, and geographic spread.</p>
+          </div>
+          <span class="g-count">29 fields</span>
+        </div>
+        <div class="group-row">
+          <span class="g-dot" style="background:#b4791f"></span>
+          <div class="g-body">
+            <span class="g-name">4 · Incident Closure</span>
+            <p class="g-desc">Root cause analysis, causal strength and origin, lessons identified, remedial actions, and supplemental documentation.</p>
+          </div>
+          <span class="g-count">12 fields</span>
+        </div>
+      </div>
+
+      <h2>Reference tools</h2>
+
+      <div class="card-grid">
+        <a class="card" href="/docs/reference/fire-field-reference.html">
+          <div class="card-tag">Interactive</div>
+          <div class="card-title">Field Reference</div>
+          <div class="card-desc">All 87 information items with field types and phase optionality. Filter by group, status, or search by name.</div>
+        </a>
+        <a class="card" href="/about/">
+          <div class="card-tag">Overview</div>
+          <div class="card-title">About FIRE</div>
+          <div class="card-desc">Background on the standard, the FSB, and why harmonised incident reporting matters.</div>
+        </a>
+        <a class="card" href="/docs/reference/FSB-FIRE.PDF">
+          <div class="card-tag">Official · PDF</div>
+          <div class="card-title">FSB Final Report</div>
+          <div class="card-desc">The authoritative source document published by the Financial Stability Board on 15 April 2025.</div>
+        </a>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
   </body>
 </html>
