@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Header Fields — FSB FIRE Reference</title>
+    <meta name="description" content="Field guidance for the 6 FIRE Header fields — FIRE version, report type, language code, language country, language customisation, and report currency." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <a href="/reference/fields/">Field Guidance</a>
+        <span class="sep">·</span>
+        <span>Header</span>
+      </nav>
+
+      <p class="eyebrow" style="color:#a9a299">Header · fields 1–6</p>
+      <h1>Header</h1>
+      <p class="lead">Message-level metadata required on every FIRE report regardless of phase. These fields identify the schema version, report type, language, and currency used throughout the document.</p>
+
+      <div class="section-group">
+        <p class="section-group-label">Message header</p>
+
+        <div class="field-entry" id="f1">
+          <div class="field-meta">
+            <span class="field-num">1</span>
+            <span class="field-tag">Decimal</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>FIRE version</h3>
+          <p>The version number of the FIRE schema used to construct the report. This allows receiving authorities to parse the report against the correct schema definition.</p>
+          <p>The current version of the FIRE standard is <strong>1.0</strong>. This field should reflect the version of the schema actually used — do not use a higher version number than the schema you have implemented.</p>
+        </div>
+
+        <div class="field-entry" id="f2">
+          <div class="field-meta">
+            <span class="field-num">2</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>FIRE report type</h3>
+          <p>Identifies which of the three institution-initiated reporting phases this report represents. The value set here drives the optionality of all other fields in the report — fields that are Essential at Final but Optional at Initial, for example, are interpreted according to this value.</p>
+          <p>Accepted values:</p>
+          <ul>
+            <li><strong>Initial</strong> — first notification of the incident</li>
+            <li><strong>Intermediate</strong> — update while the incident is ongoing or under investigation</li>
+            <li><strong>Final</strong> — closed-incident report once the incident has been resolved and root cause identified</li>
+          </ul>
+          <p>This field determines the validation rules applied by the receiving authority's system. Set it correctly before populating any other field.</p>
+        </div>
+
+        <div class="field-entry" id="f3">
+          <div class="field-meta">
+            <span class="field-num">3</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>FIRE report language code</h3>
+          <p>The ISO 639-1 two-letter code for the primary language in which the report's free-text fields are written. This allows authorities processing reports in multiple languages to route or translate content correctly.</p>
+          <p>Examples: <code>en</code> (English), <code>de</code> (German), <code>fr</code> (French), <code>ja</code> (Japanese). The full list of valid codes is defined in ISO 639-1.</p>
+          <p>Combined with field 4 (language country) to fully identify the language variant. Use field 5 (language customisation) for any additional specificity not captured by the code and country combination.</p>
+        </div>
+
+        <div class="field-entry" id="f4">
+          <div class="field-meta">
+            <span class="field-num">4</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>FIRE report language country</h3>
+          <p>The ISO 3166-1 alpha-2 two-letter country code for the regional or national variant of the language specified in field 3. Together with field 3, this forms a standard locale identifier (e.g., <code>en</code> + <code>GB</code> for British English; <code>en</code> + <code>US</code> for American English).</p>
+          <p>Use the country associated with the dominant variant of the language used in the report's free-text content — typically the entity's jurisdiction of incorporation.</p>
+        </div>
+
+        <div class="field-entry" id="f5">
+          <div class="field-meta">
+            <span class="field-num">5</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>FIRE report language customisation</h3>
+          <p>An optional free-text field for language variants not fully described by the ISO 639-1 code and ISO 3166-1 country code combination in fields 3 and 4. For example, specifying a script variant or a regional dialect.</p>
+          <p>This field is rarely required. Leave blank unless the language+country combination (fields 3 and 4) is insufficient to uniquely identify the language variant used.</p>
+        </div>
+
+        <div class="field-entry" id="f6">
+          <div class="field-meta">
+            <span class="field-num">6</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>FIRE report currency</h3>
+          <p>The ISO 4217 three-letter currency code for the currency in which all monetary values in this report are expressed. All financial figures across the report — including field 63 (affected transaction value) and field 68 (impact financial loss) — must be denominated in this currency.</p>
+          <p>Examples: <code>GBP</code>, <code>EUR</code>, <code>USD</code>, <code>JPY</code>. If the entity operates in multiple currencies, convert values to a single reporting currency and state it here. This is typically the entity's functional or domestic currency.</p>
+          <p>This field must be set before any monetary values can be correctly interpreted.</p>
+        </div>
+
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

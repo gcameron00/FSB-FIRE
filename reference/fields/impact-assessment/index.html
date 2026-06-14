@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Impact Assessment Fields — FSB FIRE Reference</title>
+    <meta name="description" content="Field guidance for the 29 FIRE Impact Assessment fields — severity, affected parties, services and resources, and impact dimensions." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <a href="/reference/fields/">Field Guidance</a>
+        <span class="sep">·</span>
+        <span>Impact Assessment</span>
+      </nav>
+
+      <p class="eyebrow" style="color:#8a5cb0">Group 3 · fields 47–75</p>
+      <h1>Impact Assessment</h1>
+      <p class="lead">Captures the severity and scope of the incident's effects — on services, end users, transactions, resources, finances, and reputation. These fields allow supervisors to assess and compare incident impacts across institutions and borders.</p>
+
+      <div class="section-group">
+        <p class="section-group-label">3.1 Severity Rating</p>
+
+        <div class="field-entry" id="f47">
+          <div class="field-meta">
+            <span class="field-num">47</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>entity severity</h3>
+          <p>The entity's own internal severity rating for this incident, using whatever severity framework the entity has in place. This is a free-text field to accommodate the wide variety of internal rating schemes used across different institutions.</p>
+          <p>Providing this alongside the standardised severity (field 48) gives the receiving authority context for how the entity itself assessed the incident relative to its own risk appetite and internal thresholds. It also helps supervisors calibrate the FIRE standardised scale against industry practice over time.</p>
+        </div>
+
+        <div class="field-entry" id="f48">
+          <div class="field-meta">
+            <span class="field-num">48</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>standardised severity</h3>
+          <p>The overall severity of the incident assessed using the FIRE six-level standardised scale. This is the primary cross-institution severity comparator and is essential at every phase.</p>
+          <p>Accepted values: <strong>Nil</strong>, <strong>Negligible</strong>, <strong>Low</strong>, <strong>Medium</strong>, <strong>High</strong>, <strong>Extreme</strong>. See <a href="/reference/severity/">Severity Scale (Annex E)</a> for descriptors and step-change transition criteria.</p>
+          <p>The standardised severity reflects an overall holistic assessment — it should be informed by the four dimensional impact scales (fields 69–72) but is not a mechanical average of them. Use your judgement, guided by the Annex E descriptors, to select the level that best represents the overall impact.</p>
+          <p>Update the severity rating at each phase as the situation develops and more information becomes available.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">3.2 Affected Parties</p>
+
+        <div class="field-entry" id="f49">
+          <div class="field-meta">
+            <span class="field-num">49</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>affected party type(s)</h3>
+          <p>Classification of the types of parties that were affected by the incident. An array allowing multiple types to be reported simultaneously. The accepted values are defined by the implementing authority and typically include categories such as retail customers, corporate clients, counterparties, third-party service providers, and financial market infrastructure.</p>
+        </div>
+
+        <div class="field-entry" id="f50">
+          <div class="field-meta">
+            <span class="field-num">50</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>related affected entities</h3>
+          <p>Other legal entities — subsidiaries, affiliates, branches, counterparties, or third-party providers — that were materially affected by the incident. Each entry is a key-value pair identifying the entity (e.g., by name and LEI).</p>
+          <p>This field is critical for understanding the systemic reach of an incident beyond the reporting entity. Supervisors use it to coordinate with other authorities that may have regulatory responsibility for the affected entities.</p>
+        </div>
+
+        <div class="field-entry" id="f51">
+          <div class="field-meta">
+            <span class="field-num">51</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>affected notes</h3>
+          <p>Free-text narrative providing additional context on affected parties that is not captured by the structured fields above — for example, explaining why certain parties were affected, the nature of their involvement, or describing specific client or counterparty impacts in more detail.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">3.3 Services and Resources</p>
+
+        <div class="field-entry" id="f52">
+          <div class="field-meta">
+            <span class="field-num">52</span>
+            <span class="field-tag">Container</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>service(s) affected</h3>
+          <p>A container holding one or more service entries. Each service entry uses fields 53–67. Multiple services may be listed if the incident affected more than one distinct service or business function.</p>
+          <p>At least one service entry is expected from the Intermediate phase. If multiple services were affected, provide a separate entry for each significant service rather than combining them into one.</p>
+        </div>
+
+        <div class="field-entry" id="f53">
+          <div class="field-meta">
+            <span class="field-num">53</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>service name</h3>
+          <p>The name of the affected service — as the entity refers to it internally, or as it is known to customers. Examples: "Online Banking", "Payment Processing", "FX Trading Platform", "Card Services", "Core Banking System".</p>
+          <p>Be specific enough that the receiving authority can understand what capability was disrupted. Avoid generic terms like "IT systems" — name the actual service or application.</p>
+        </div>
+
+        <div class="field-entry" id="f54">
+          <div class="field-meta">
+            <span class="field-num">54</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>service type</h3>
+          <p>Classification of the service using ISO 20022 business area codes. This provides a standardised, machine-readable description of the type of financial service affected, enabling cross-institution analysis of which service categories are most frequently impacted.</p>
+          <p>Each entry is a key-value pair where the key identifies the classification scheme and the value is the specific code. Multiple entries may be needed if the service spans multiple ISO 20022 business areas.</p>
+        </div>
+
+        <div class="field-entry" id="f55">
+          <div class="field-meta">
+            <span class="field-num">55</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>service critical</h3>
+          <p>An indication of whether the affected service has been designated as critical — for example, as a critical economic function, critical service under the entity's operational resilience framework, or critical financial market infrastructure. The specific designation framework is defined by the implementing authority.</p>
+          <p>This field helps supervisors rapidly identify whether an incident has affected services of heightened systemic importance.</p>
+        </div>
+
+        <div class="field-entry" id="f56">
+          <div class="field-meta">
+            <span class="field-num">56</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>service disruption type</h3>
+          <p>The type of service disruption using the <a href="/reference/disruption-types/">Annex F</a> classification. Multiple types may apply — for example, a ransomware attack may involve both Availability Loss (Total) and Confidentiality Loss (Unauthorised Acquisition).</p>
+          <p>See <a href="/reference/disruption-types/">Service Disruption Types (Annex F)</a> for the full list. Select all applicable types for each service entry.</p>
+        </div>
+
+        <div class="field-entry" id="f57">
+          <div class="field-meta">
+            <span class="field-num">57</span>
+            <span class="field-tag">Duration</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>service downtime</h3>
+          <p>The total duration for which the service was unavailable or significantly degraded. For intermittent disruptions, this should be the cumulative total of downtime periods, not the elapsed time from first disruption to full restoration.</p>
+          <p>Express as an ISO 8601 duration (e.g., <code>PT4H30M</code> for 4 hours 30 minutes, <code>P2DT6H</code> for 2 days and 6 hours). At the Final phase this should be a confirmed figure; at Intermediate it may still be an estimate if the service is not yet fully restored.</p>
+        </div>
+
+        <div class="field-entry" id="f58">
+          <div class="field-meta">
+            <span class="field-num">58</span>
+            <span class="field-tag">Integer</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>affected end user number</h3>
+          <p>The estimated number of end users (retail customers, corporate clients, etc.) who were affected by the disruption to this service. Use the best available estimate at the time of reporting — this can be refined in later reports.</p>
+          <p>Count unique users, not interactions or transactions. If some users were only partially affected (e.g., experienced degraded service rather than total loss), include them if the impact was material from the user's perspective.</p>
+        </div>
+
+        <div class="field-entry" id="f59">
+          <div class="field-meta">
+            <span class="field-num">59</span>
+            <span class="field-tag">Percentage</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>affected end user percentage</h3>
+          <p>The percentage of the entity's total end user base for this service that was affected. Expressed as a decimal percentage (e.g., <code>0.35</code> for 35%). Complements field 58 by providing a relative measure that is comparable across entities of different sizes.</p>
+        </div>
+
+        <div class="field-entry" id="f60">
+          <div class="field-meta">
+            <span class="field-num">60</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>affected transaction type</h3>
+          <p>The types of financial transactions that were affected — for example, payments, settlements, securities trades, foreign exchange transactions, or cash withdrawals. The accepted values are defined by the implementing authority.</p>
+        </div>
+
+        <div class="field-entry" id="f61">
+          <div class="field-meta">
+            <span class="field-num">61</span>
+            <span class="field-tag">Integer</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>affected transaction number</h3>
+          <p>The number of transactions affected by the incident. Count all transactions that failed, were delayed, or were otherwise materially disrupted during the incident window. Where exact counts are not immediately available, provide the best available estimate.</p>
+        </div>
+
+        <div class="field-entry" id="f62">
+          <div class="field-meta">
+            <span class="field-num">62</span>
+            <span class="field-tag">Percentage</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>affected transaction percentage</h3>
+          <p>The affected transactions expressed as a percentage of the total number of transactions processed by the entity in the same period. Provides context for the scale of the disruption relative to normal activity.</p>
+        </div>
+
+        <div class="field-entry" id="f63">
+          <div class="field-meta">
+            <span class="field-num">63</span>
+            <span class="field-tag">Decimal</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>affected transaction value</h3>
+          <p>The total monetary value of affected transactions, expressed in the report currency specified in field 6. This quantifies the economic throughput disrupted by the incident and is one of the key metrics for assessing financial impact severity.</p>
+        </div>
+
+        <div class="field-entry" id="f64">
+          <div class="field-meta">
+            <span class="field-num">64</span>
+            <span class="field-tag">Container</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>resource(s) affected</h3>
+          <p>A container holding one or more resource entries. Each resource entry uses fields 65–66. Multiple resources may be listed if the incident affected more than one distinct resource. The container is essential at Final — by this stage the entity should have identified the affected resources through its investigation.</p>
+        </div>
+
+        <div class="field-entry" id="f65">
+          <div class="field-meta">
+            <span class="field-num">65</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>resource type</h3>
+          <p>The type of resource affected, using the <a href="/reference/resources/">Annex H</a> classification. Select the most specific applicable type — for example, "Software" rather than just "Technology", or "Datastore" rather than just "Information".</p>
+          <p>See <a href="/reference/resources/">Resource Types (Annex H)</a> for the full two-tier taxonomy with descriptions.</p>
+        </div>
+
+        <div class="field-entry" id="f66">
+          <div class="field-meta">
+            <span class="field-num">66</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>resource affected properties</h3>
+          <p>The security properties of the resource that were compromised, using the <a href="/reference/resources/#annex-i">Annex I</a> list. Multiple properties may apply — for example, an attack that encrypted data and prevented access would affect both Availability and Integrity.</p>
+          <p>Accepted values: Availability, Integrity, Confidentiality, Authenticity, Accountability, Non-repudiation, Reliability. See <a href="/reference/resources/">Resource Properties (Annex I)</a> for definitions.</p>
+        </div>
+
+        <div class="field-entry" id="f67">
+          <div class="field-meta">
+            <span class="field-num">67</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>service / resource notes</h3>
+          <p>Free-text narrative providing additional context on affected services or resources not captured by the structured fields above. Use this to explain complex relationships between affected systems, describe cascading failures, or provide detail on specific resources that the structured fields cannot fully represent.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">3.4 Impact</p>
+
+        <div class="field-entry" id="f68">
+          <div class="field-meta">
+            <span class="field-num">68</span>
+            <span class="field-tag">Decimal</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact financial loss</h3>
+          <p>The actual, confirmed financial loss incurred by the entity as a direct result of the incident, expressed in the report currency (field 6). This is distinct from the financial impact scale (field 69) — this field captures a specific monetary amount, while field 69 captures a standardised ordinal rating.</p>
+          <p>Include direct costs (fraud losses, theft, write-offs) but not indirect costs such as incident response costs or reputational losses. Provide an estimate at Initial if an exact figure is not yet known — note in the description that it is an estimate and refine in subsequent reports.</p>
+        </div>
+
+        <div class="field-entry" id="f69">
+          <div class="field-meta">
+            <span class="field-num">69</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact financial</h3>
+          <p>The financial impact of the incident assessed on the FIRE six-level scale. See <a href="/reference/impact/#financial">Financial Impact (Annex J)</a> for level descriptions.</p>
+          <p>Accepted values: None, Insignificant, Minor, Moderate, Substantial, Severe. This is one of four impact dimensions that inform the overall standardised severity (field 48).</p>
+        </div>
+
+        <div class="field-entry" id="f70">
+          <div class="field-meta">
+            <span class="field-num">70</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact operational</h3>
+          <p>The operational impact of the incident assessed on the FIRE six-level scale. See <a href="/reference/impact/#operational">Operational Impact (Annex K)</a> for level descriptions.</p>
+          <p>Accepted values: None, Insignificant, Minor, Moderate, Substantial, Severe. Reflects the degree of disruption to the entity's ability to carry out its critical functions and services.</p>
+        </div>
+
+        <div class="field-entry" id="f71">
+          <div class="field-meta">
+            <span class="field-num">71</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact reputational</h3>
+          <p>The reputational impact of the incident assessed on the FIRE six-level scale. See <a href="/reference/impact/#reputational">Reputational Impact (Annex L)</a> for level descriptions.</p>
+          <p>Accepted values: None, Insignificant, Minor, Moderate, Substantial, Severe. This should reflect the actual or expected effect on the entity's public standing and client and counterparty relationships.</p>
+        </div>
+
+        <div class="field-entry" id="f72">
+          <div class="field-meta">
+            <span class="field-num">72</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact external</h3>
+          <p>The external impact — on parties beyond the reporting entity — assessed on the FIRE six-level scale. See <a href="/reference/impact/#external">External Impact (Annex M)</a> for level descriptions.</p>
+          <p>Accepted values: None, Insignificant, Minor, Moderate, Substantial, Severe. This dimension captures spillover effects on clients, counterparties, market participants, and the broader financial system — the key systemic risk indicator in the impact framework.</p>
+        </div>
+
+        <div class="field-entry" id="f73">
+          <div class="field-meta">
+            <span class="field-num">73</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>impact geographic spread</h3>
+          <p>The geographic reach of the incident's impact. Accepted values are defined by the implementing authority but typically include: local (confined to a single site or city), national (affecting the entity's domestic operations broadly), and international (affecting operations or parties in more than one country).</p>
+          <p>Essential from Intermediate — by this stage the geographic reach should be understood even if it is still evolving. If the scope widened between reports, note this in the description.</p>
+        </div>
+
+        <div class="field-entry" id="f74">
+          <div class="field-meta">
+            <span class="field-num">74</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact geographic countries</h3>
+          <p>If the geographic spread (field 73) is international, list the specific countries affected using ISO 3166-1 alpha-2 country codes. Include any country in which the entity's operations, clients, or counterparties were materially affected.</p>
+        </div>
+
+        <div class="field-entry" id="f75">
+          <div class="field-meta">
+            <span class="field-num">75</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>impact notes</h3>
+          <p>Free-text narrative on the overall impact of the incident — context that is not captured by the structured impact fields. Use this to explain why a particular impact rating was selected, to describe evolving impact estimates, or to note any unusual aspects of the impact profile that would help supervisors interpret the structured data.</p>
+        </div>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

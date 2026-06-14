@@ -130,6 +130,8 @@
   .num-cell{font-family:"IBM Plex Mono";font-size:12px;color:var(--na);width:34px;}
   .field{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--ink);}
   .field .gtab{display:inline-block;width:3px;height:13px;border-radius:2px;margin-right:9px;vertical-align:-2px;background:var(--gc,var(--na));}
+  .guide-link{color:inherit;text-decoration:none;}
+  .guide-link:hover{color:var(--ess);text-decoration:underline;}
   .sec{font-size:12px;color:var(--muted);white-space:nowrap;}
   .type{font-family:"IBM Plex Mono";font-size:11.5px;color:var(--muted);white-space:nowrap;}
   td.phase{text-align:center;padding:11px 4px;border-left:1px solid var(--line);}
@@ -243,11 +245,11 @@
 
 <script>
 const GROUPS={
-  H:{label:"Message header",color:"#a9a299"},
-  "1":{label:"1 · Reporting Details",color:"#3b6ea5"},
-  "2":{label:"2 · Incident Details",color:"#2f8f83"},
-  "3":{label:"3 · Impact Assessment",color:"#8a5cb0"},
-  "4":{label:"4 · Incident Closure",color:"#b4791f"}
+  H:{label:"Message header",color:"#a9a299",path:"/reference/fields/header/"},
+  "1":{label:"1 · Reporting Details",color:"#3b6ea5",path:"/reference/fields/reporting-details/"},
+  "2":{label:"2 · Incident Details",color:"#2f8f83",path:"/reference/fields/incident-details/"},
+  "3":{label:"3 · Impact Assessment",color:"#8a5cb0",path:"/reference/fields/impact-assessment/"},
+  "4":{label:"4 · Incident Closure",color:"#b4791f",path:"/reference/fields/incident-closure/"}
 };
 // p = [Initial, Intermediate, Final]; E essential, O optional, NA not applicable, NC not collected
 const DATA=[
@@ -390,7 +392,7 @@ function render(){
     const tr=document.createElement("tr");
     tr.innerHTML=
       `<td class="num-cell">${d.n}</td>`+
-      `<td class="field"><span class="gtab" style="--gc:${GROUPS[d.g].color}"></span>${d.f}</td>`+
+      `<td class="field"><span class="gtab" style="--gc:${GROUPS[d.g].color}"></span><a href="${GROUPS[d.g].path}#f${d.n}" class="guide-link">${d.f}</a></td>`+
       `<td class="sec">${d.s}</td>`+
       `<td class="type">${d.t}</td>`+
       `<td class="phase">${pill(d.p[0])}</td>`+

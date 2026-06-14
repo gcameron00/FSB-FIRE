@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Reporting Details Fields — FSB FIRE Reference</title>
+    <meta name="description" content="Field guidance for the 18 FIRE Reporting Details fields — reporting entity, receiving entity, and contact details." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <a href="/reference/fields/">Field Guidance</a>
+        <span class="sep">·</span>
+        <span>Reporting Details</span>
+      </nav>
+
+      <p class="eyebrow" style="color:#3b6ea5">Group 1 · fields 7–24</p>
+      <h1>Reporting Details</h1>
+      <p class="lead">Identifies who is filing the report, which authority is receiving it, and who to contact for follow-up. These fields establish the administrative frame for the incident report.</p>
+
+      <div class="section-group">
+        <p class="section-group-label">1.1 Reporting Entity</p>
+
+        <div class="field-entry" id="f7">
+          <div class="field-meta">
+            <span class="field-num">7</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>entity name</h3>
+          <p>The full legal registered name of the entity submitting the report. Use the entity's official name as registered with its domestic regulator or in its jurisdiction of incorporation — not a trading name or abbreviation.</p>
+          <p>For a branch reporting on behalf of a foreign parent, this should be the name of the legal entity that is the subject of the regulatory relationship, not the branch name.</p>
+        </div>
+
+        <div class="field-entry" id="f8">
+          <div class="field-meta">
+            <span class="field-num">8</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>global identifier(s)</h3>
+          <p>One or more globally recognised identifiers for the reporting entity. Each entry is a key-value pair where the key is the identifier type and the value is the identifier string.</p>
+          <p>The preferred global identifier is the <strong>Legal Entity Identifier (LEI)</strong>. Other accepted types include BIC (Bank Identifier Code) and ISIN where applicable. Including an LEI significantly aids cross-border identification and data matching by receiving authorities.</p>
+          <p>Example: <code>{"LEI": "ABCDE12345FGHIJ67890"}</code></p>
+        </div>
+
+        <div class="field-entry" id="f9">
+          <div class="field-meta">
+            <span class="field-num">9</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>local identifier(s)</h3>
+          <p>One or more identifiers assigned by a domestic regulatory authority. Each entry is a key-value pair where the key is the identifier type (typically including the issuing authority) and the value is the identifier string.</p>
+          <p>Examples include firm reference numbers, registration numbers, or other domestic identifiers issued by the receiving authority. Including local identifiers helps the receiving authority match the report to its internal records for the entity.</p>
+        </div>
+
+        <div class="field-entry" id="f10">
+          <div class="field-meta">
+            <span class="field-num">10</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>ultimate parent name</h3>
+          <p>If the reporting entity is a subsidiary or branch within a larger group, the full legal name of the ultimate parent entity at the top of the ownership chain. This provides context for incidents that may have group-wide implications.</p>
+          <p>Leave blank if the reporting entity is itself the ultimate parent, or if the entity does not form part of a group structure.</p>
+        </div>
+
+        <div class="field-entry" id="f11">
+          <div class="field-meta">
+            <span class="field-num">11</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>entity type(s)</h3>
+          <p>The classification(s) of the reporting entity's type — for example, bank, insurance company, investment firm, payment service provider, or financial market infrastructure. An array is used because entities may hold multiple licence types or classifications.</p>
+          <p>The accepted values for entity type are defined by the implementing authority. Each key-value pair typically identifies both the classification scheme (key) and the specific type (value).</p>
+        </div>
+
+        <div class="field-entry" id="f12">
+          <div class="field-meta">
+            <span class="field-num">12</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>entity country</h3>
+          <p>The ISO 3166-1 alpha-2 country code for the jurisdiction in which the reporting entity is incorporated or primarily established. For branches, this is typically the country of the branch's host jurisdiction rather than the parent's home country.</p>
+          <p>This field helps receiving authorities contextualise the entity's regulatory environment and map it to existing supervisory records.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">1.2 Receiving Entity</p>
+
+        <div class="field-entry" id="f13">
+          <div class="field-meta">
+            <span class="field-num">13</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>recipient identifier(s)</h3>
+          <p>One or more identifiers for the authority or authorities to whom this report is being submitted. Each entry is a key-value pair identifying the receiving authority using a scheme agreed between the submitting entity and the authority.</p>
+          <p>This field allows a single FIRE report to be addressed to multiple recipients, and enables automated routing and processing by intermediary systems.</p>
+        </div>
+
+        <div class="field-entry" id="f14">
+          <div class="field-meta">
+            <span class="field-num">14</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>recipient history</h3>
+          <p>A record of authorities that have previously received earlier versions of this report. Used to maintain an audit trail of which authorities have received which versions, particularly when reports are updated or forwarded between authorities.</p>
+        </div>
+
+        <div class="field-entry" id="f15">
+          <div class="field-meta">
+            <span class="field-num">15</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not collected · all phases</span>
+          </div>
+          <h3>forwarding sender</h3>
+          <p>Used when a report is being forwarded by one authority to another — identifies the authority that is forwarding the report (not the original submitting entity). Populated by the forwarding party, not by the original submitting institution.</p>
+          <p>This field is marked Not Collected in institution-initiated reporting. It is populated only in authority-to-authority forwarding scenarios.</p>
+        </div>
+
+        <div class="field-entry" id="f16">
+          <div class="field-meta">
+            <span class="field-num">16</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not collected · all phases</span>
+          </div>
+          <h3>forwarding recipient(s)</h3>
+          <p>Used when a report is being forwarded by one authority to another — identifies the intended final recipient(s) of the forwarded report. Populated by the forwarding authority.</p>
+          <p>Like field 15, this is Not Collected in institution-initiated reporting and is only populated in authority-to-authority forwarding scenarios.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">1.3 Contact Details</p>
+
+        <div class="field-entry" id="f17">
+          <div class="field-meta">
+            <span class="field-num">17</span>
+            <span class="field-tag">Container</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>entity contact(s)</h3>
+          <p>A container that groups one or more contact person records. Each contact record within this container uses fields 18–24. At minimum, each contact entry must include contact type (field 18), contact name (field 19), and contact email (field 20).</p>
+          <p>At least one contact must be provided. Multiple contacts may be supplied — for example, a primary point of contact and a technical contact. The <em>contact type</em> field (18) distinguishes between contact roles.</p>
+        </div>
+
+        <div class="field-entry" id="f18">
+          <div class="field-meta">
+            <span class="field-num">18</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>contact type</h3>
+          <p>Classifies the role of the contact person within the entity. Receiving authorities use this to route follow-up queries to the appropriate person — for example, directing technical questions to a technical contact rather than the primary business contact.</p>
+          <p>The accepted enumerated values for contact type are determined by the implementing authority. Typical types include primary contact, technical contact, management contact, and legal contact.</p>
+        </div>
+
+        <div class="field-entry" id="f19">
+          <div class="field-meta">
+            <span class="field-num">19</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>contact name</h3>
+          <p>The full name of the contact person. Use the person's full legal or professional name as they would expect to be addressed in formal correspondence.</p>
+        </div>
+
+        <div class="field-entry" id="f20">
+          <div class="field-meta">
+            <span class="field-num">20</span>
+            <span class="field-tag">Text (email)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>contact email</h3>
+          <p>The email address of the contact person. Must be a valid email address in standard format. This is the primary channel through which the receiving authority will make follow-up contact, so it should be a monitored mailbox — not a generic or unmonitored address.</p>
+          <p>For ongoing incidents, consider whether the contact's email will remain accessible during a major incident (e.g., if email systems are affected).</p>
+        </div>
+
+        <div class="field-entry" id="f21">
+          <div class="field-meta">
+            <span class="field-num">21</span>
+            <span class="field-tag">Text (telephone)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>contact phone</h3>
+          <p>The telephone number of the contact person, formatted in <strong>E.164 international format</strong> — a plus sign followed by the country code and number with no spaces or punctuation (e.g., <code>+442071234567</code>).</p>
+          <p>This should be a number at which the contact can actually be reached during an incident — ideally a direct line or mobile, not a general switchboard.</p>
+        </div>
+
+        <div class="field-entry" id="f22">
+          <div class="field-meta">
+            <span class="field-num">22</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>contact role</h3>
+          <p>The contact person's job title or functional role within the entity — for example, "Chief Information Security Officer", "Head of Operational Resilience", or "Incident Response Lead". Provides context for the contact's authority and expertise.</p>
+        </div>
+
+        <div class="field-entry" id="f23">
+          <div class="field-meta">
+            <span class="field-num">23</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>contact department</h3>
+          <p>The department, team, or business unit the contact person belongs to — for example, "Group Cyber Security", "Technology Risk", or "Operational Resilience". Helps route correspondence to the correct internal team.</p>
+        </div>
+
+        <div class="field-entry" id="f24">
+          <div class="field-meta">
+            <span class="field-num">24</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>contact recipient</h3>
+          <p>Where a report is addressed to multiple recipients (field 13), this field specifies which recipient(s) a particular contact is associated with. This allows the reporting entity to designate different contacts for different receiving authorities — for example, a domestic regulator contact and a cross-border authority contact.</p>
+          <p>Leave blank if the same contact applies to all recipients or if only one recipient is listed.</p>
+        </div>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

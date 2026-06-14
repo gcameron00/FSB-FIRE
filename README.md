@@ -36,7 +36,13 @@ Hosted on [Cloudflare Pages](https://pages.cloudflare.com).
 | `/reference/resources/` | Done | Annexes H–I — resource types and properties |
 | `/reference/impact/` | Done | Annexes J–M — financial, operational, reputational, external impact scales |
 | `/reference/cause-types/` | Done | Annex N — two-tier cause taxonomy |
-| `/docs/reference/fire-field-reference.html` | Done | Interactive field reference (87 items, filterable) |
+| `/reference/fields/` | Done | Field guidance index |
+| `/reference/fields/header/` | Done | Guidance for fields 1–6 (Header) |
+| `/reference/fields/reporting-details/` | Done | Guidance for fields 7–24 (Reporting Details) |
+| `/reference/fields/incident-details/` | Done | Guidance for fields 25–46 (Incident Details) |
+| `/reference/fields/impact-assessment/` | Done | Guidance for fields 47–75 (Impact Assessment) |
+| `/reference/fields/incident-closure/` | Done | Guidance for fields 76–87 (Incident Closure) |
+| `/docs/reference/fire-field-reference.html` | Done | Interactive field reference (87 items, filterable; links to field guidance) |
 
 ---
 
@@ -78,8 +84,8 @@ The site deploys automatically to Cloudflare Pages on push to `main`.
 - [x] Cause taxonomy (Annex N — 6 Level-1 categories, 30+ Level-2 subcategories)
 
 ### Phase 3 — Guides
+- [x] Field guidance — per-field notes for all 87 items, linked from the interactive field reference
 - [ ] Reporting phase guide — what is required at each of the three phases and how requirements escalate
-- [ ] Field-by-field guidance — notes on implementing optional fields, unstructured text guidance
 - [ ] Cross-jurisdiction notes — where authorities have customised the optional fields
 
 ---

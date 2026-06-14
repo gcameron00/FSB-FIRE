@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Incident Details Fields — FSB FIRE Reference</title>
+    <meta name="description" content="Field guidance for the 22 FIRE Incident Details fields — references, incident description, type, discovery method, timeline, and update tracking." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <a href="/reference/fields/">Field Guidance</a>
+        <span class="sep">·</span>
+        <span>Incident Details</span>
+      </nav>
+
+      <p class="eyebrow" style="color:#2f8f83">Group 2 · fields 25–46</p>
+      <h1>Incident Details</h1>
+      <p class="lead">Describes the incident itself — the reference identifiers, what happened and when, how it was discovered, and what has changed since the previous report. These fields form the core narrative of the FIRE submission.</p>
+
+      <div class="section-group">
+        <p class="section-group-label">2.1 References</p>
+
+        <div class="field-entry" id="f25">
+          <div class="field-meta">
+            <span class="field-num">25</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>entity internal incident ID</h3>
+          <p>The entity's own internal reference number or identifier for this incident, as used in the entity's incident management system. Providing this allows the receiving authority to correlate the FIRE report with any other communications (calls, emails, prior voluntary notifications) that reference the entity's internal ticket number.</p>
+          <p>This field is for the entity's own identifier — not a reference assigned by the authority. Authority-assigned references go in field 14 (recipient history).</p>
+        </div>
+
+        <div class="field-entry" id="f26">
+          <div class="field-meta">
+            <span class="field-num">26</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>entity related incident ID(s)</h3>
+          <p>References to other incidents that are connected to this one. Use this field to link incidents that are part of the same campaign, share a common cause, or involve related entities (e.g., a simultaneous attack on a subsidiary, or a follow-on incident triggered by the same vulnerability).</p>
+          <p>Each entry in the array should be an identifier that can be matched against another FIRE report — typically an entity internal incident ID (field 25) from a related report.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">2.2 Incident</p>
+
+        <div class="field-entry" id="f27">
+          <div class="field-meta">
+            <span class="field-num">27</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>report phase</h3>
+          <p>The current reporting phase for this specific report. While field 2 (FIRE report type) declares the report type at the message level, this field records the phase within the incident narrative — they should always match.</p>
+          <p>Accepted values: <strong>Initial</strong>, <strong>Intermediate</strong>, <strong>Final</strong>. This field, together with the incident status (field 28), determines which fields are expected to be populated.</p>
+        </div>
+
+        <div class="field-entry" id="f28">
+          <div class="field-meta">
+            <span class="field-num">28</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>incident status</h3>
+          <p>The operational status of the incident at the time of this report.</p>
+          <ul>
+            <li><strong>Open</strong> — the incident is ongoing; services have not been restored</li>
+            <li><strong>Resolved</strong> — services have been restored, but the investigation is continuing</li>
+            <li><strong>Closed</strong> — the incident has been fully resolved and the investigation concluded</li>
+          </ul>
+          <p>The status should accurately reflect the situation at the time of reporting, not what is expected by the next update. A Final report should generally have status Closed.</p>
+        </div>
+
+        <div class="field-entry" id="f29">
+          <div class="field-meta">
+            <span class="field-num">29</span>
+            <span class="field-tag">Text (short)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>incident title</h3>
+          <p>A brief, descriptive title for the incident — enough for the receiving authority to identify it at a glance without reading the full description. Keep it concise (typically under 100 characters) and meaningful.</p>
+          <p>Avoid highly technical jargon or internal code names that the authority may not recognise. Do not include sensitive details (e.g., specific vulnerability names or attacker identities) that might be inappropriate at the Initial phase. The title should remain consistent across all reports for the same incident.</p>
+        </div>
+
+        <div class="field-entry" id="f30">
+          <div class="field-meta">
+            <span class="field-num">30</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>incident description</h3>
+          <p>A narrative description of the incident — what happened, what was affected, and the current understanding at the time of this report. This is the primary free-text field and should give the receiving authority a clear picture of the incident without requiring them to read other fields.</p>
+          <p>At the Initial phase, this may be brief and incomplete — describe what is known. At Intermediate and Final phases, this should be progressively more complete, incorporating new information discovered since the last report. The description should be updated (not replaced) at each phase — readers of the Final report should be able to understand the full incident history.</p>
+          <p>Good descriptions address: what systems or services were affected, the apparent nature of the disruption, the approximate scope, and the current status.</p>
+        </div>
+
+        <div class="field-entry" id="f31">
+          <div class="field-meta">
+            <span class="field-num">31</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>incident type</h3>
+          <p>The classification of the incident using the <a href="/reference/incident-types/">Annex C</a> standardised incident types. Optional at Initial (the type may not yet be known) but essential from Intermediate once the nature of the incident is established.</p>
+          <p>Multiple types may apply to the same incident — for example, a ransomware attack is simultaneously a Business Disruption and a Data Breach. Include all applicable types rather than selecting only the primary type.</p>
+          <p>See <a href="/reference/incident-types/">Incident Types (Annex C)</a> for the full list with definitions and examples.</p>
+        </div>
+
+        <div class="field-entry" id="f32">
+          <div class="field-meta">
+            <span class="field-num">32</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>incident artefact(s)</h3>
+          <p>Technical indicators of compromise (IoCs) or other technical artefacts associated with the incident — such as malware hashes, IP addresses, domains, file names, or attack signatures. These are particularly valuable for threat intelligence sharing between authorities.</p>
+          <p>If reporting IoCs, use structured formats where possible (e.g., STIX/TAXII-compatible notation) so that receiving authorities can process them programmatically. Be mindful of any classification or sensitivity around specific IoC details, particularly at the Initial phase when the investigation is ongoing.</p>
+        </div>
+
+        <div class="field-entry" id="f33">
+          <div class="field-meta">
+            <span class="field-num">33</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>incident discovery method</h3>
+          <p>How the incident was first identified, using the standardised <a href="/reference/discovery-methods/">Annex D</a> code list. Optional at Initial (the method may not yet be confirmed), essential from Intermediate.</p>
+          <p>Select the method that best describes how the entity first became aware — even if that discovery was later supplemented by other methods. For example, if a customer reported an issue that the entity subsequently confirmed through its SOC, the discovery method is "Customer or Client".</p>
+          <p>See <a href="/reference/discovery-methods/">Discovery Methods (Annex D)</a> for all 18 options with descriptions.</p>
+        </div>
+
+        <div class="field-entry" id="f34">
+          <div class="field-meta">
+            <span class="field-num">34</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>incident reporting trigger(s)</h3>
+          <p>The regulatory or policy trigger(s) that obligate or prompt the entity to submit this report — for example, a threshold breach (severity level, number of affected customers, financial loss), a mandatory reporting obligation under a specific regulation, or a voluntary early notification.</p>
+          <p>Multiple triggers may apply. The accepted values are defined by each implementing authority to reflect their specific regulatory framework.</p>
+        </div>
+
+        <div class="field-entry" id="f35">
+          <div class="field-meta">
+            <span class="field-num">35</span>
+            <span class="field-tag">Duration</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Final</span>
+          </div>
+          <h3>estimated timeframe for resolution</h3>
+          <p>The entity's best estimate of the remaining time until the incident is fully resolved, expressed as a duration (e.g., in hours or days). This helps receiving authorities plan their engagement and assess whether they need to escalate their response.</p>
+          <p>At the Final phase, services have been restored and the incident is closed, so this field is not applicable. Update the estimate at each Intermediate report as the situation develops — include an explanation in the description (field 30) if the estimate has changed significantly from the previous report.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">2.3 Changes since Previous Report</p>
+
+        <div class="field-entry" id="f36">
+          <div class="field-meta">
+            <span class="field-num">36</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>actions taken</h3>
+          <p>A description of the containment, remediation, and response actions the entity has taken since the last report. At Intermediate and Final phases, this is essential — receiving authorities need to see that the entity is actively managing the incident.</p>
+          <p>Be specific: describe concrete actions (e.g., "isolated affected servers", "revoked compromised credentials", "engaged external forensic firm") rather than general statements (e.g., "managed the incident"). At the Final phase, this should reflect the full list of actions taken to resolve the incident.</p>
+        </div>
+
+        <div class="field-entry" id="f37">
+          <div class="field-meta">
+            <span class="field-num">37</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Final</span>
+          </div>
+          <h3>actions planned</h3>
+          <p>A description of the actions the entity plans to take before the next report. At the Intermediate phase this is essential — it demonstrates that the entity has a forward plan for managing and resolving the incident.</p>
+          <p>This field is not applicable at the Final phase because the incident is closed and there are no further planned actions within the incident scope. Any longer-term remediation actions are captured in the remedial actions field (field 84) in the Incident Closure group.</p>
+        </div>
+
+        <div class="field-entry" id="f38">
+          <div class="field-meta">
+            <span class="field-num">38</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>public reaction</h3>
+          <p>A description of any public, media, social media, or market reactions to the incident. This includes press coverage, social media commentary, public statements by third parties, or any observable effect on the entity's public reputation. Essential at Final to provide a complete picture of the incident's reputational dimension.</p>
+          <p>If there has been no public reaction, state so explicitly rather than leaving the field blank at Final phase.</p>
+        </div>
+
+        <div class="field-entry" id="f39">
+          <div class="field-meta">
+            <span class="field-num">39</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>comms issued</h3>
+          <p>A summary of the communications the entity has issued to affected parties, customers, counterparties, or the public — including the nature of the communication, the intended audience, and the timing. Essential at Final to demonstrate that appropriate stakeholders were informed.</p>
+          <p>Examples: customer notifications, public announcements, press releases, updates to affected business partners. Also include regulatory communications beyond the FIRE report itself.</p>
+        </div>
+
+        <div class="field-entry" id="f40">
+          <div class="field-meta">
+            <span class="field-num">40</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>bodies notified</h3>
+          <p>A list of other regulatory, governmental, or competent authorities that have been notified of this incident beyond the recipient of this FIRE report. This helps receiving authorities coordinate with their counterparts and avoid duplication of engagement.</p>
+          <p>Examples: national competent authorities in other jurisdictions, central banks, law enforcement agencies, national cyber security authorities, financial intelligence units. Include the names of the bodies and, where relevant, the date of notification.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">2.4 Date / Time Markers</p>
+
+        <div class="field-entry" id="f41">
+          <div class="field-meta">
+            <span class="field-num">41</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag ess">Essential · all phases</span>
+          </div>
+          <h3>time of report</h3>
+          <p>The date and time at which this particular report was submitted. All datetime values in FIRE use <strong>ISO 8601 format</strong>, including the timezone offset (e.g., <code>2025-04-15T14:30:00+01:00</code>). Never use local time without a timezone offset.</p>
+          <p>This timestamp creates an auditable record of when each report was filed and is used by receiving authorities to assess compliance with reporting deadlines.</p>
+        </div>
+
+        <div class="field-entry" id="f42">
+          <div class="field-meta">
+            <span class="field-num">42</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>time of occurrence</h3>
+          <p>The date and time when the incident first began — i.e., when the underlying event causing the incident is believed to have started. This may differ significantly from when the incident was detected (field 43). For example, a malicious actor may have gained access weeks before the intrusion was discovered.</p>
+          <p>If the exact time of occurrence is unknown, provide the best estimate with a note in the description (field 30). If there is significant uncertainty, this field may remain Optional at Initial but should be estimated by Final if at all possible.</p>
+        </div>
+
+        <div class="field-entry" id="f43">
+          <div class="field-meta">
+            <span class="field-num">43</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>time of detection</h3>
+          <p>The date and time when the entity first became aware that an incident was occurring or had occurred. This is the moment of detection — the trigger for the response — and is distinct from both the time of occurrence (field 42) and the time of report (field 41).</p>
+          <p>The gap between occurrence and detection (the "dwell time") is a key metric for supervisors assessing the maturity of the entity's detection capabilities. Essential at Final: it should be confirmed by this stage even if initially uncertain.</p>
+        </div>
+
+        <div class="field-entry" id="f44">
+          <div class="field-meta">
+            <span class="field-num">44</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Initial</span>
+            <span class="field-tag ess">Essential · Intermediate &amp; Final</span>
+          </div>
+          <h3>time of resolution</h3>
+          <p>The date and time when the affected services were restored to normal operation. Not applicable at Initial (services are not yet resolved). At Intermediate, this should be completed once services have been restored even if the investigation is still ongoing. At Final, this is essential.</p>
+          <p>Note that resolution (service restoration) is distinct from closure (field 45) — an incident can be resolved operationally while the root cause investigation is still running.</p>
+        </div>
+
+        <div class="field-entry" id="f45">
+          <div class="field-meta">
+            <span class="field-num">45</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>time of closure</h3>
+          <p>The date and time when the entity formally closed the incident — meaning the investigation is complete, root cause has been identified, and any immediate remediation has been implemented. This is the end of the incident lifecycle and is captured only in the Final report.</p>
+          <p>Closure typically occurs after resolution but may be significantly later if forensic investigation takes time. The root cause and lessons identified (fields 76–84) should be complete by the time closure is declared.</p>
+        </div>
+
+        <div class="field-entry" id="f46">
+          <div class="field-meta">
+            <span class="field-num">46</span>
+            <span class="field-tag">Datetime</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Final</span>
+          </div>
+          <h3>time of next update</h3>
+          <p>The expected date and time of the entity's next report. This helps receiving authorities plan their supervisory engagement and follow-up — they can note when to expect the next update without needing to proactively chase the entity.</p>
+          <p>Not applicable at Final since there will be no further reports. Update this field at each Intermediate report if the expected timing changes. If circumstances make it impossible to give a reliable estimate, use the description field to explain why.</p>
+        </div>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

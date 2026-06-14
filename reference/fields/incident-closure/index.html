@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Incident Closure Fields — FSB FIRE Reference</title>
+    <meta name="description" content="Field guidance for the 12 FIRE Incident Closure fields — root cause analysis, lessons identified, remedial actions, and supplemental documentation." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <a href="/reference/fields/">Field Guidance</a>
+        <span class="sep">·</span>
+        <span>Incident Closure</span>
+      </nav>
+
+      <p class="eyebrow" style="color:#b4791f">Group 4 · fields 76–87</p>
+      <h1>Incident Closure</h1>
+      <p class="lead">The closure fields capture the outcome of the investigation — what caused the incident, how confident the entity is in that conclusion, what lessons were identified, and what actions have been taken to address vulnerabilities. These fields are primarily essential at the Final phase.</p>
+
+      <div class="note"><b>Final phase only.</b> All fields in this group are Not applicable at Initial and Intermediate phases — they are not expected until the investigation is complete and the incident is ready to be closed. Exceptions: fields 76–81 (cause) and 85–87 (attachments) are Optional (not NA) at earlier phases, allowing entities to share preliminary root cause thinking or attach supporting documents early if useful.</div>
+
+      <div class="section-group">
+        <p class="section-group-label">4.1 Cause</p>
+
+        <div class="field-entry" id="f76">
+          <div class="field-meta">
+            <span class="field-num">76</span>
+            <span class="field-tag">Container</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>cause(s) identified</h3>
+          <p>A container holding one or more cause entries. Each entry describes one identified root cause using fields 77–81. Multiple causes may be recorded — complex incidents often have more than one contributing root cause.</p>
+          <p>Even where a single cause is identified at Final, use the container structure. If no cause has been definitively identified by Final, provide the best assessment with a causal strength of "Possible" or "Suspected" (field 78) and explain in cause notes (field 81).</p>
+        </div>
+
+        <div class="field-entry" id="f77">
+          <div class="field-meta">
+            <span class="field-num">77</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>cause type</h3>
+          <p>The root cause type using the FIRE two-tier <a href="/reference/cause-types/">Annex N</a> taxonomy. Select the most specific Level 2 category that applies — for example, "Ransomware" rather than just "Malicious Acts", or "Software Failure" rather than just "Information System Failures".</p>
+          <p>If the cause spans more than one category, create separate cause container entries for each distinct cause. See <a href="/reference/cause-types/">Cause Types (Annex N)</a> for the full taxonomy with descriptions.</p>
+        </div>
+
+        <div class="field-entry" id="f78">
+          <div class="field-meta">
+            <span class="field-num">78</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>causal strength</h3>
+          <p>The entity's confidence level in the identified root cause. This acknowledges that in complex incidents, the root cause may not be established with certainty even at the time of the Final report.</p>
+          <p>Typical accepted values:</p>
+          <ul>
+            <li><strong>Confirmed</strong> — the root cause has been verified through forensic investigation or other definitive means</li>
+            <li><strong>Probable</strong> — the root cause is the most likely explanation based on available evidence but has not been fully confirmed</li>
+            <li><strong>Suspected</strong> — the root cause is a plausible hypothesis, but significant uncertainty remains</li>
+            <li><strong>Possible</strong> — the root cause is one of several possible explanations under consideration</li>
+          </ul>
+          <p>Do not omit this field simply because the cause is uncertain — an honest confidence assessment is more useful to supervisors than leaving it blank.</p>
+        </div>
+
+        <div class="field-entry" id="f79">
+          <div class="field-meta">
+            <span class="field-num">79</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>origin</h3>
+          <p>Whether the root cause originated within the entity itself, at a direct outsourcing provider, or further up the supply chain. This dimension helps supervisors identify systemic vulnerabilities in third-party relationships and supply chains across the financial sector.</p>
+          <p>Accepted values:</p>
+          <ul>
+            <li><strong>Internal</strong> — the cause originated within the entity's own organisation and systems</li>
+            <li><strong>Direct outsourcer</strong> — the cause originated at a provider directly contracted by the entity</li>
+            <li><strong>Supply chain</strong> — the cause originated at a provider further up the supply chain (a subcontractor or sub-outsourcer)</li>
+          </ul>
+        </div>
+
+        <div class="field-entry" id="f80">
+          <div class="field-meta">
+            <span class="field-num">80</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>origin identity</h3>
+          <p>If the origin (field 79) is a direct outsourcer or supply chain entity, identifies that entity using one or more key-value pairs (e.g., LEI, name, or other identifier). This allows supervisors to track which third parties are appearing as causal origins across multiple institution reports — an important tool for identifying systemic third-party risk.</p>
+          <p>Leave blank if the origin is Internal, or if the external entity's identity has not yet been confirmed.</p>
+        </div>
+
+        <div class="field-entry" id="f81">
+          <div class="field-meta">
+            <span class="field-num">81</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>cause notes</h3>
+          <p>Free-text narrative on the root cause analysis — the "story" behind how and why the incident happened. Use this to explain the causal chain, provide technical detail that the structured cause type cannot capture, or describe the entity's root cause investigation methodology.</p>
+          <p>A good cause notes entry explains not just <em>what</em> the cause was but <em>why</em> it occurred — the underlying conditions (process gaps, misconfigurations, unpatched vulnerabilities, etc.) that allowed the root cause to have the impact it did. This is among the most valuable content for supervisors assessing systemic vulnerability patterns.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">4.2 Lessons</p>
+
+        <div class="field-entry" id="f82">
+          <div class="field-meta">
+            <span class="field-num">82</span>
+            <span class="field-tag">Container</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>lesson(s) identified</h3>
+          <p>A container holding one or more lesson entries. Each lesson uses fields 83–84. Lessons identified are essential at the Final phase — they demonstrate that the entity has reflected on the incident and identified actionable improvements.</p>
+          <p>At minimum, provide one lesson per significant root cause identified. Multiple lesson entries may be used if the incident revealed several distinct areas for improvement. Superficial or generic lessons (e.g., "train staff better") are less useful than specific, actionable findings tied to the specific failure modes identified.</p>
+        </div>
+
+        <div class="field-entry" id="f83">
+          <div class="field-meta">
+            <span class="field-num">83</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>lesson description</h3>
+          <p>A description of the specific lesson identified from this incident. Effective lessons are:</p>
+          <ul>
+            <li>Specific — tied to a concrete failure or gap identified in this incident</li>
+            <li>Actionable — pointing to a change that can actually be made</li>
+            <li>Forward-looking — focused on preventing recurrence, not assigning blame</li>
+          </ul>
+          <p>Examples: "Detection of lateral movement was delayed because EDR coverage did not extend to OT systems", "The change approval process did not require a security review for patches categorised as low-criticality".</p>
+        </div>
+
+        <div class="field-entry" id="f84">
+          <div class="field-meta">
+            <span class="field-num">84</span>
+            <span class="field-tag">Array (key-value)</span>
+            <span class="field-tag" style="background:var(--paper);color:var(--muted)">Not applicable · Initial &amp; Intermediate</span>
+            <span class="field-tag ess">Essential · Final</span>
+          </div>
+          <h3>remedial action(s)</h3>
+          <p>The actions taken or formally committed to in order to address the vulnerabilities or gaps identified by the lessons. Each entry is a key-value pair, typically with the action description as the value and a status or owner as the key.</p>
+          <p>These are longer-term remediation actions — the short-term containment actions taken during the incident are captured in field 36 (actions taken). Remedial actions here should directly address the root cause and the lessons identified, with enough detail for the receiving authority to assess their adequacy and track their completion over time.</p>
+          <p>Where actions are not yet complete at the time of the Final report, note their planned completion date.</p>
+        </div>
+      </div>
+
+      <div class="section-group">
+        <p class="section-group-label">4.3 Supplemental Documentation</p>
+
+        <div class="field-entry" id="f85">
+          <div class="field-meta">
+            <span class="field-num">85</span>
+            <span class="field-tag">Enumerated</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>attachment method</h3>
+          <p>Specifies how supplemental documentation supporting the report is being provided. Accepted values reflect the two available methods:</p>
+          <ul>
+            <li><strong>Embedded</strong> — the file is included directly within the FIRE report package (field 87)</li>
+            <li><strong>By reference</strong> — the file is held separately and access instructions are provided in field 86</li>
+          </ul>
+          <p>Supplemental documentation might include forensic investigation reports, timeline diagrams, root cause analysis presentations, or regulatory correspondence. Only include materials that genuinely add context beyond what the structured fields already capture.</p>
+        </div>
+
+        <div class="field-entry" id="f86">
+          <div class="field-meta">
+            <span class="field-num">86</span>
+            <span class="field-tag">Text (long)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>attachment instructions</h3>
+          <p>If the attachment method (field 85) is "by reference", provide the instructions or information needed for the receiving authority to access the supplemental documentation. This might include a secure file share URL, a reference to a regulatory portal, a contact for obtaining the materials, or an expected delivery method.</p>
+          <p>Ensure that the access method is appropriate for the sensitivity of the documentation and accessible to the receiving authority within the expected timeframe.</p>
+        </div>
+
+        <div class="field-entry" id="f87">
+          <div class="field-meta">
+            <span class="field-num">87</span>
+            <span class="field-tag">Array (list)</span>
+            <span class="field-tag opt">Optional · all phases</span>
+          </div>
+          <h3>attachment embedded</h3>
+          <p>One or more files embedded directly within the FIRE report, encoded for transmission. Used when field 85 (attachment method) is set to "Embedded".</p>
+          <p>The FIRE schema specifies the encoding format and file size limits for embedded attachments. For large files, the "by reference" method (field 85 + field 86) is generally preferable to avoid size constraints and to allow documents to be updated after the report is submitted.</p>
+        </div>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>
