@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Cause Types — FSB FIRE Reference</title>
+    <meta name="description" content="FIRE Annex N — the two-tier cause taxonomy covering process failures, human factors, system failures, external dependencies, hazards, and malicious acts." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <span>Cause Types</span>
+      </nav>
+
+      <p class="eyebrow">Annex N</p>
+      <h1>Cause Types</h1>
+      <p class="lead">A <b>two-tier cause taxonomy</b> used to classify the root cause of an incident. The primary cause type is essential at the Final phase. Multiple causes may be identified.</p>
+
+      <div class="note"><b>Root cause context.</b> Cause type is reported alongside <em>causal strength</em> (how confident the entity is in the identified cause) and <em>causal origin</em> — whether the cause was internal to the entity, at a direct outsourcing provider, or in the broader supply chain.</div>
+
+      <div class="table-wrap">
+        <table class="annex-table">
+          <thead>
+            <tr>
+              <th style="width:30%">Level 1 / Level 2</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header">
+              <td colspan="2">Internal Process Failures</td>
+            </tr>
+            <tr>
+              <td>Process Design Failure</td>
+              <td>A process was inadequately designed — it lacked necessary controls, was incomplete, or contained structural flaws that allowed the incident to occur.</td>
+            </tr>
+            <tr>
+              <td>Process Execution Failure</td>
+              <td>A process that was correctly designed was not followed or was applied incorrectly, leading to the incident.</td>
+            </tr>
+            <tr>
+              <td>Change Management Failure</td>
+              <td>A failure in the processes governing changes to systems, processes, or configurations — including inadequate testing, approval, or rollback procedures.</td>
+            </tr>
+            <tr>
+              <td>Governance Failure</td>
+              <td>Inadequate or absent governance, oversight, or accountability structures that contributed to or failed to prevent the incident.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified Internal Process Failure</td>
+              <td style="color:var(--muted)">The incident resulted from an internal process failure, but the specific type has not been determined.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Human Causal Factors</td>
+            </tr>
+            <tr>
+              <td>Human Error</td>
+              <td>An unintentional mistake by a person — such as a misconfiguration, accidental deletion, or incorrect action — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Skills and Knowledge Failure</td>
+              <td>Insufficient training, expertise, or awareness meant that staff were unable to prevent, identify, or correctly respond to the incident.</td>
+            </tr>
+            <tr>
+              <td>Occupational Health and Safety</td>
+              <td>A workplace health or safety issue — including staff incapacitation, illness, or inability to access work — that affected the entity's operational resilience.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified Human Causal Factor</td>
+              <td style="color:var(--muted)">The incident was caused by a human factor, but the specific type has not been determined.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Information System Failures</td>
+            </tr>
+            <tr>
+              <td>Hardware Failure</td>
+              <td>A failure of physical ICT or OT components — including servers, storage, networking equipment, or other devices — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Software Failure</td>
+              <td>A defect, bug, or unexpected behaviour in software — including applications, operating systems, or firmware — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Network Failure</td>
+              <td>A failure in the communications infrastructure — including network connectivity, routing, or telecommunications services — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Data Failure</td>
+              <td>A failure relating to the integrity, availability, or quality of data — including data corruption, loss, or inconsistency — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Capacity Failure</td>
+              <td>Systems or infrastructure were unable to handle the volume, load, or demand placed on them — resulting in degradation, failure, or outage.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified Information System Failure</td>
+              <td style="color:var(--muted)">The incident was caused by an information system failure, but the specific type has not been determined.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">External Dependency Failures</td>
+            </tr>
+            <tr>
+              <td>Third-party Failure</td>
+              <td>A failure by an external service provider, supplier, or outsourcing partner — including cloud providers, managed services, or critical vendors — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Utility Failure</td>
+              <td>A failure in essential utility services such as power, water, cooling, or telecommunications that the entity depends on.</td>
+            </tr>
+            <tr>
+              <td>Market Infrastructure Failure</td>
+              <td>A failure in financial market infrastructure — such as payment systems, central counterparties, or exchanges — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified External Dependency Failure</td>
+              <td style="color:var(--muted)">The incident was caused by an external dependency failure, but the specific type has not been determined.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Hazards</td>
+            </tr>
+            <tr>
+              <td>Natural Hazard</td>
+              <td>A naturally occurring event — such as a flood, earthquake, storm, or pandemic — that caused or contributed to the incident.</td>
+            </tr>
+            <tr>
+              <td>Environmental Hazard</td>
+              <td>An environmental event or condition not primarily natural in origin — such as fire, chemical contamination, or similar physical hazard affecting the entity's operations.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified Hazard</td>
+              <td style="color:var(--muted)">The incident was caused by a hazard, but the specific type has not been determined.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Malicious Acts</td>
+            </tr>
+            <tr>
+              <td>DoS / DDoS</td>
+              <td>A denial-of-service or distributed denial-of-service attack intended to overwhelm systems or services and render them unavailable.</td>
+            </tr>
+            <tr>
+              <td>Identity Theft</td>
+              <td>The fraudulent acquisition and use of another person's or entity's identity or credentials.</td>
+            </tr>
+            <tr>
+              <td>Insider Threat</td>
+              <td>A malicious act carried out by a current or former employee, contractor, or other party with inside access to the entity's systems or information.</td>
+            </tr>
+            <tr>
+              <td>Malware</td>
+              <td>Malicious software — including viruses, trojans, spyware, or worms — deployed to compromise, damage, or gain unauthorised access to systems or data.</td>
+            </tr>
+            <tr>
+              <td>Physical Manipulation, Damage, Theft and Loss</td>
+              <td>A physical attack on or theft of assets — including tampering with hardware, theft of devices, or physical destruction of infrastructure.</td>
+            </tr>
+            <tr>
+              <td>Ransomware</td>
+              <td>A type of malware that encrypts or locks systems or data and demands payment for restoration of access.</td>
+            </tr>
+            <tr>
+              <td>Resource Hijacking</td>
+              <td>Unauthorised use of the entity's computing resources — for example, cryptomining or botnet enlistment — without disrupting the entity's own operations.</td>
+            </tr>
+            <tr>
+              <td>Social Engineering (including Phishing)</td>
+              <td>Manipulation of individuals into divulging information or performing actions that compromise security — including phishing, vishing, and other deception techniques.</td>
+            </tr>
+            <tr>
+              <td>Spam</td>
+              <td>Unsolicited bulk communications used to deliver malicious content, overwhelm communications channels, or facilitate other attacks.</td>
+            </tr>
+            <tr>
+              <td>Web Application Targeting</td>
+              <td>Attacks targeting web applications and their vulnerabilities — including SQL injection, cross-site scripting (XSS), and exploitation of application-layer weaknesses.</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted)">Unspecified Malicious Act</td>
+              <td style="color:var(--muted)">The incident was caused by a malicious act, but the specific type has not been determined.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025, Annex N.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

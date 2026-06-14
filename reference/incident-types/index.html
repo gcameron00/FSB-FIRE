@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Incident Types — FSB FIRE Reference</title>
+    <meta name="description" content="FIRE Annex C — the five standardised incident type categories with definitions and illustrative examples." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <span>Incident Types</span>
+      </nav>
+
+      <p class="eyebrow">Annex C</p>
+      <h1>Incident Types</h1>
+      <p class="lead">FIRE classifies incidents into <b>five standardised types</b>. The type must be reported at the Initial phase (optional) and confirmed at the Intermediate and Final phases (essential).</p>
+
+      <div class="note"><b>Multiple types.</b> An incident may span more than one category — for example, a ransomware attack may be both a Business Disruption and a Data Breach. Reporters should select all applicable types.</div>
+
+      <div class="table-wrap">
+        <table class="annex-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Type</th>
+              <th style="width:42%">Definition</th>
+              <th>Illustrative examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Business Disruption or System / Execution Failure</strong></td>
+              <td>An incident that compromises the availability, reliability, or continuity of a critical function or service — regardless of cause.</td>
+              <td>
+                <ul>
+                  <li>Core systems go offline or become severely slow</li>
+                  <li>Transaction processing fails or halts</li>
+                  <li>Data corruption preventing normal operations</li>
+                  <li>Automated processes stop or produce erroneous outputs</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Compromise (non-disruptive)</strong></td>
+              <td>An incident that compromises the confidentiality or integrity of systems or data without materially affecting availability or continuity of services.</td>
+              <td>
+                <ul>
+                  <li>Unauthorised access to systems or data without disruption</li>
+                  <li>Undetected data manipulation that does not halt services</li>
+                  <li>Backdoor or persistent access established silently</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Data Breach</strong></td>
+              <td>An incident involving the unauthorised acquisition, access, use, or exposure of sensitive or protected data.</td>
+              <td>
+                <ul>
+                  <li>Personal or client data published or exfiltrated</li>
+                  <li>Stolen login credentials used to access accounts</li>
+                  <li>Sensitive internal data leaked to third parties</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Financial Theft or Fraud</strong></td>
+              <td>An incident involving the actual or attempted theft of financial assets or fraudulent financial activity.</td>
+              <td>
+                <ul>
+                  <li>Unauthorised payment or wire transfer instructions</li>
+                  <li>Fraudulent SWIFT or interbank messaging</li>
+                  <li>Account takeover leading to fund theft</li>
+                  <li>Manipulation of trading systems for financial gain</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Information Disorder</strong></td>
+              <td>An incident involving the deliberate creation or spread of false, misleading, or harmful information about the reporting entity — including impersonation and disinformation campaigns.</td>
+              <td>
+                <ul>
+                  <li>False rumours about the entity's financial health spread on social media</li>
+                  <li>Fake communications impersonating the entity sent to clients</li>
+                  <li>Coordinated disinformation campaign targeting the entity's reputation</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025, Annex C.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

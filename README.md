@@ -26,8 +26,16 @@ Hosted on [Cloudflare Pages](https://pages.cloudflare.com).
 
 | Path | Status | Description |
 |------|--------|-------------|
-| `/` | Placeholder | Homepage — to be built |
+| `/` | Done | Homepage — FIRE overview, stats, and navigation |
 | `/about/` | Done | About FIRE and this site |
+| `/reference/` | Done | Reference index — links to all tools |
+| `/reference/incident-types/` | Done | Annex C — 5 incident type categories |
+| `/reference/discovery-methods/` | Done | Annex D — 18 discovery methods |
+| `/reference/severity/` | Done | Annex E — six-level severity scale |
+| `/reference/disruption-types/` | Done | Annex F — service disruption type classifications |
+| `/reference/resources/` | Done | Annexes H–I — resource types and properties |
+| `/reference/impact/` | Done | Annexes J–M — financial, operational, reputational, external impact scales |
+| `/reference/cause-types/` | Done | Annex N — two-tier cause taxonomy |
 | `/docs/reference/fire-field-reference.html` | Done | Interactive field reference (87 items, filterable) |
 
 ---
@@ -55,20 +63,19 @@ The site deploys automatically to Cloudflare Pages on push to `main`.
 ### Phase 1 — Foundation
 - [x] Interactive field reference (87 items, search + filter by group / status / phase)
 - [x] About page — FIRE overview and site purpose
-- [ ] Homepage — replace placeholder with FIRE overview, key stats, and navigation
-- [ ] Consistent site-wide navigation component
+- [x] Homepage — FIRE overview, key stats, group list, and navigation
+- [x] Consistent site-wide navigation component
 - [ ] Move field reference to a clean URL (`/reference/fields/`)
 
 ### Phase 2 — Annex reference pages
-Each annex in the FSB report deserves its own navigable page:
-
-- [ ] Incident types (Annex C — 6 categories: Business Disruption, Compromise, Data Breach, Financial Theft/Fraud, Information Disorder, Other)
-- [ ] Standardised severity scale (Annex E — 6 levels: Nil → Extreme)
-- [ ] Cause taxonomy (Annex N — 6 Level-1 categories, 30+ Level-2 subcategories including 14 malicious-act subtypes)
-- [ ] Impact scales (Annexes J–M — financial, operational, reputational, external; each 6 levels)
-- [ ] Discovery methods (Annex D — 18 methods)
-- [ ] Service disruption types (Annex F — Availability, Integrity, Confidentiality, Trust loss)
-- [ ] Resource types and properties (Annexes H–I)
+- [x] Reference index page (`/reference/`)
+- [x] Incident types (Annex C — 5 categories)
+- [x] Discovery methods (Annex D — 18 methods)
+- [x] Standardised severity scale (Annex E — 6 levels: Nil → Extreme)
+- [x] Service disruption types (Annex F — Availability, Integrity, Confidentiality, Trust loss)
+- [x] Resource types and properties (Annexes H–I)
+- [x] Impact scales (Annexes J–M — financial, operational, reputational, external; each 6 levels)
+- [x] Cause taxonomy (Annex N — 6 Level-1 categories, 30+ Level-2 subcategories)
 
 ### Phase 3 — Guides
 - [ ] Reporting phase guide — what is required at each of the three phases and how requirements escalate

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Service Disruption Types — FSB FIRE Reference</title>
+    <meta name="description" content="FIRE Annex F — standardised service disruption type classifications: availability loss, integrity loss, confidentiality loss, and loss of trust." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <span>Disruption Types</span>
+      </nav>
+
+      <p class="eyebrow">Annex F</p>
+      <h1>Service Disruption Types</h1>
+      <p class="lead">FIRE uses <b>four primary disruption categories</b>, each with subtypes, to classify how a service was disrupted. Multiple types may apply to the same incident. This field is essential from the Intermediate phase.</p>
+
+      <div class="table-wrap">
+        <table class="annex-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header">
+              <td colspan="2">Availability Loss</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>Complete loss of service or function — the service is wholly unavailable to users.</td>
+            </tr>
+            <tr>
+              <td>Partial</td>
+              <td>Loss of service for some users or some functions, while other users or functions remain accessible.</td>
+            </tr>
+            <tr>
+              <td>Intermittent</td>
+              <td>The service alternates between being available and unavailable — users experience repeated outages during the incident window.</td>
+            </tr>
+            <tr>
+              <td>Degradation</td>
+              <td>The service remains available but performs at significantly reduced capacity or speed, affecting user experience and operational throughput.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Integrity Loss</td>
+            </tr>
+            <tr>
+              <td>Manipulation</td>
+              <td>Data or system outputs have been deliberately altered without authorisation — affecting the accuracy or reliability of information.</td>
+            </tr>
+            <tr>
+              <td>Corruption</td>
+              <td>Data or system state has been damaged or made inaccurate, typically through an unintended technical failure rather than deliberate action.</td>
+            </tr>
+            <tr>
+              <td>Destruction</td>
+              <td>Data or systems have been intentionally or irreversibly destroyed, rendering them unrecoverable without backup restoration.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Confidentiality Loss</td>
+            </tr>
+            <tr>
+              <td>Unintended Disclosure</td>
+              <td>Sensitive or protected information has been shared or made accessible to unauthorised parties inadvertently — without intent to disclose.</td>
+            </tr>
+            <tr>
+              <td>Unauthorised Acquisition</td>
+              <td>Sensitive or protected information has been deliberately accessed, copied, or exfiltrated by an unauthorised party.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Loss of Trust</td>
+            </tr>
+            <tr>
+              <td>Impersonation</td>
+              <td>The entity, its communications, or its services have been falsely represented by an unauthorised party — for example, fake websites, spoofed emails, or fraudulent customer contact.</td>
+            </tr>
+            <tr>
+              <td>Disinformation</td>
+              <td>False or misleading information about the entity has been deliberately created and circulated — for example, fabricated news, false statements attributed to the entity.</td>
+            </tr>
+            <tr>
+              <td>Rumour</td>
+              <td>Unverified or speculative information about the entity has spread — without confirmation that it is deliberate disinformation — causing reputational or operational harm.</td>
+            </tr>
+            <tr class="group-header">
+              <td colspan="2">Other</td>
+            </tr>
+            <tr>
+              <td>Unknown</td>
+              <td>The type of service disruption has not yet been determined.</td>
+            </tr>
+            <tr>
+              <td>Other</td>
+              <td>The disruption type does not fit any of the above categories. A free-text description should be provided where possible.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025, Annex F.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>

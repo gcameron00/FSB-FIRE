@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Resource Types &amp; Properties — FSB FIRE Reference</title>
+    <meta name="description" content="FIRE Annexes H and I — classification of affected resources (people, technology, information) and the seven resource security properties." />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+
+      <nav class="site-nav">
+        <a href="/">Home</a>
+        <span class="sep">·</span>
+        <a href="/reference/">Reference</a>
+        <span class="sep">·</span>
+        <span>Resource Types &amp; Properties</span>
+      </nav>
+
+      <p class="eyebrow">Annexes H &amp; I</p>
+      <h1>Resource Types &amp; Properties</h1>
+      <p class="lead">FIRE records which <b>resources were affected</b> (Annex H) and which of their <b>security properties were compromised</b> (Annex I) — from the Intermediate phase. Multiple types and properties may apply.</p>
+
+      <h2>Annex H — Resource Types</h2>
+      <p>Classification of the resources affected by the incident, structured as a two-tier hierarchy.</p>
+
+      <div class="table-wrap">
+        <table class="annex-table">
+          <thead>
+            <tr>
+              <th style="width:25%">Category</th>
+              <th style="width:25%">Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>People</strong></td>
+              <td>—</td>
+              <td>Human resources — employees, contractors, or other individuals whose actions, access, or availability were affected by the incident.</td>
+            </tr>
+            <tr>
+              <td><strong>Property</strong></td>
+              <td>—</td>
+              <td>Physical assets — including buildings, facilities, and physical equipment not classified as ICT or OT hardware.</td>
+            </tr>
+            <tr>
+              <td rowspan="3"><strong>Technology</strong></td>
+              <td>ICT Hardware</td>
+              <td>Information and communications technology hardware — servers, workstations, storage devices, networking equipment, and other ICT infrastructure.</td>
+            </tr>
+            <tr>
+              <td>OT Hardware</td>
+              <td>Operational technology hardware — physical systems that monitor or control industrial and physical processes, such as embedded controllers or SCADA systems.</td>
+            </tr>
+            <tr>
+              <td>Software</td>
+              <td>Applications, operating systems, firmware, or other software components — whether off-the-shelf, custom-built, or sourced from a third party.</td>
+            </tr>
+            <tr>
+              <td rowspan="5"><strong>Information</strong></td>
+              <td>Datastore</td>
+              <td>Structured data repositories — databases, data warehouses, or other organised collections of data accessible by systems.</td>
+            </tr>
+            <tr>
+              <td>File-based</td>
+              <td>Unstructured or semi-structured information stored as files — documents, spreadsheets, logs, configuration files, and similar artefacts.</td>
+            </tr>
+            <tr>
+              <td>Code</td>
+              <td>Source code, scripts, or compiled executables owned or managed by the entity.</td>
+            </tr>
+            <tr>
+              <td>Third-party Library</td>
+              <td>Externally sourced software libraries, components, or packages incorporated into the entity's systems.</td>
+            </tr>
+            <tr>
+              <td>Archived</td>
+              <td>Information held in long-term storage or backup systems — not in active use at the time of the incident.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Annex I — Resource Properties</h2>
+      <p>The security properties of the affected resources that were compromised by the incident. Based on the extended CIA triad used in information security frameworks.</p>
+
+      <div class="table-wrap">
+        <table class="annex-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Property</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Availability</strong></td>
+              <td>The resource was not accessible or usable by authorised parties when needed — for example, systems taken offline or data rendered inaccessible.</td>
+            </tr>
+            <tr>
+              <td><strong>Integrity</strong></td>
+              <td>The accuracy or completeness of the resource was compromised — data was modified, corrupted, or destroyed without authorisation.</td>
+            </tr>
+            <tr>
+              <td><strong>Confidentiality</strong></td>
+              <td>Information was disclosed to or accessed by parties who were not authorised to receive it.</td>
+            </tr>
+            <tr>
+              <td><strong>Authenticity</strong></td>
+              <td>The genuine origin or identity of the resource could not be verified — for example, spoofed communications, forged credentials, or tampered artefacts.</td>
+            </tr>
+            <tr>
+              <td><strong>Accountability</strong></td>
+              <td>Actions taken on or with the resource could not be reliably attributed to specific entities — for example, due to disabled logging, audit trail manipulation, or compromised identity controls.</td>
+            </tr>
+            <tr>
+              <td><strong>Non-repudiation</strong></td>
+              <td>It is not possible to prove or deny that a particular action was taken by a particular entity — for example, because of missing or altered audit evidence.</td>
+            </tr>
+            <tr>
+              <td><strong>Reliability</strong></td>
+              <td>The resource did not perform its intended function consistently — for example, intermittent failures, degraded performance, or unpredictable outputs.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        Source: Financial Stability Board, <em>Format for Incident Reporting Exchange (FIRE): Final report</em>, 15 April 2025, Annexes H and I.
+        This site is an independent reference resource and is not affiliated with or endorsed by the FSB.
+      </footer>
+
+    </div>
+  </body>
+</html>
